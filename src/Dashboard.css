@@ -1,0 +1,38 @@
+.exportButton:hover {
+    background-color: lightgray;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.exportButton {
+    /* background-color: rgb(37, 223, 223); */
+    background-color: whitesmoke;
+    border: 2px solid #25518f;
+    box-shadow: 0 6px  #25518f;
+    color: #183153;
+    font-weight: bold;
+}
+
+
+th {
+    padding: 10px 20px;
+}
+
+tr {
+    padding: 0px, 10px;
+    width: 100%;
+}
+
+.trData {
+    border-top: solid lightgray 1px;
+    color: #183153
+}
+
+.submitIcon:hover {
+    color: #25518f;
+    cursor: pointer;
+}
+
+.eyeIcon:hover {
+    color: lightgray;
+    cursor: pointer;
+}
