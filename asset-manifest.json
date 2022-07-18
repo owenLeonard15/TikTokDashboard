@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/tiktok-dashboard/static/css/main.2141b7c7.css",
-    "main.js": "/tiktok-dashboard/static/js/main.b1ee2d6d.js",
-    "static/js/787.c7fe1984.chunk.js": "/tiktok-dashboard/static/js/787.c7fe1984.chunk.js",
-    "index.html": "/tiktok-dashboard/index.html",
-    "main.2141b7c7.css.map": "/tiktok-dashboard/static/css/main.2141b7c7.css.map",
-    "main.b1ee2d6d.js.map": "/tiktok-dashboard/static/js/main.b1ee2d6d.js.map",
-    "787.c7fe1984.chunk.js.map": "/tiktok-dashboard/static/js/787.c7fe1984.chunk.js.map"
+    "main.css": "/TikTokDashboard/static/css/main.2141b7c7.css",
+    "main.js": "/TikTokDashboard/static/js/main.3e1b05ee.js",
+    "static/js/787.c7fe1984.chunk.js": "/TikTokDashboard/static/js/787.c7fe1984.chunk.js",
+    "index.html": "/TikTokDashboard/index.html",
+    "main.2141b7c7.css.map": "/TikTokDashboard/static/css/main.2141b7c7.css.map",
+    "main.3e1b05ee.js.map": "/TikTokDashboard/static/js/main.3e1b05ee.js.map",
+    "787.c7fe1984.chunk.js.map": "/TikTokDashboard/static/js/787.c7fe1984.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2141b7c7.css",
-    "static/js/main.b1ee2d6d.js"
+    "static/js/main.3e1b05ee.js"
   ]
 }
