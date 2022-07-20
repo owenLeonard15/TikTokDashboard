@@ -1,6 +1,7 @@
 import { useQuery, gql, useMutation} from '@apollo/client';
 import { ADD_TAG, DELETE_TAG, DELETE_TAG_METRICS, GET_TAGS} from './operations';
 import TagInput from './TagInput';
+import TagSearch from './TagSearch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
@@ -10,8 +11,9 @@ import { useState } from 'react';
 
 
 
-const Table = ({ setHiddenItem, hiddenTags}) => {
+const Table = ({ setVisibleItem, visibleTags}) => {
     const [inText, setInText] = useState("")
+    const [searchText, setSearchText] = useState("")
     const [mutateAddTag, resAddTagData] = useMutation(
         ADD_TAG,
         {
@@ -63,6 +65,12 @@ const Table = ({ setHiddenItem, hiddenTags}) => {
         }
     }
 
+    const onKeyDown = (e) => {
+        if(e.key === "Enter"){
+            handleSubmit()
+        }
+    }
+
     const handleDelete = () => {
         if(inText){
             mutateDeleteTag({
@@ -80,9 +88,13 @@ const Table = ({ setHiddenItem, hiddenTags}) => {
         setInText(e.target.value)
     }
 
-    const hideTag = (event, tag) => {
+    const handleSearchChange = (e) => {
+        setSearchText(e.target.value)
+    }
+
+    const unhideTag = (event, tag) => {
         event.preventDefault()
-        setHiddenItem(tag)
+        setVisibleItem(tag)
     }
 
     const turnGray = (tag) => {
@@ -97,22 +109,31 @@ const Table = ({ setHiddenItem, hiddenTags}) => {
         <thead style={{"backgroundColor": "#25518f", "color": "whitesmoke", "borderRadius": "10px 10px 0 0", "width": "100%"}}>
             <tr><th>Hashtags</th></tr>
         </thead>
-        <tbody>
-            {data.hashtags.map((obj) => (
-                <tr key={obj.hashtag} className='trData' style={{"display": "flex", "justifyContent": "space-between"}}>
-                    <td style={{"padding": "5px"}}>{obj.hashtag}</td>
-                {
-                    hiddenTags.includes(obj.hashtag) ?
-                    <td onMouseDown={e => hideTag(e, obj.hashtag)} style={{"padding": "5px 10px"}}><FontAwesomeIcon id={obj.hashtag} style={{"color": "lightgray"}} className='eyeIcon'  icon={faEye} /></td>
-                    :<td onMouseDown={e => hideTag(e, obj.hashtag)} style={{"padding": "5px 10px"}}><FontAwesomeIcon id={obj.hashtag} onMouseEnter={() => turnGray(obj.hashtag)} onMouseLeave={() => turnDarkBlue(obj.hashtag)} style={{"color": "#183153"}}className='eyeIcon'  icon={faEye} /></td>
-                }
-            </tr>
-            ))}
+        <thead>
+            <TagSearch inputText={searchText} handleSearchChange={handleSearchChange}/> 
 
-            < TagInput inputText={inText} handleInputSubmit={handleSubmit} handleInputDelete={handleDelete} handleInputChange={handleChange} inText={inText}/>
-            
+        </thead>
+        <tbody style={{display: "block", height: "500px", width: "100%", overflowY: "auto"}}>
+            {data.hashtags.map((obj) => {
+                
+                if(obj.hashtag.startsWith(searchText)){
+                    return <tr key={obj.hashtag} className='trData' style={{"display": "flex", "justifyContent": "space-between"}}>
+                        <td style={{"padding": "5px"}}>{obj.hashtag}</td>
+                        {
+                            visibleTags.includes(obj.hashtag) ?
+                            <td onMouseDown={e => unhideTag(e, obj.hashtag)} style={{"padding": "5px 10px"}}><FontAwesomeIcon id={obj.hashtag} style={{"color": "#183153"}} className='eyeIcon'  icon={faEye} /></td>
+                            :<td onMouseDown={e => unhideTag(e, obj.hashtag)} style={{"padding": "5px 10px"}}><FontAwesomeIcon id={obj.hashtag} onMouseEnter={() => turnDarkBlue(obj.hashtag)} onMouseLeave={() => turnGray(obj.hashtag)} style={{"color": "lightgray"}}className='eyeIcon'  icon={faEye} /></td>
+                        }
+                    </tr>
+                    }
+                else return null
+                }
+            )}
         </tbody>
-        
+        <tfoot>
+            < TagInput handleInputSubmit={handleSubmit} onKeyDown={onKeyDown} handleInputDelete={handleDelete} handleInputChange={handleChange} inText={inText}/>
+        </tfoot>
+
     </table>
 
 }
