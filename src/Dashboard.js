@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 // Import everything needed to use the `useQuery` hook
 
 
+
 const Dashboard = () => {
     const { loading, error, data } = useQuery(
         GET_TAGS,
@@ -45,7 +46,7 @@ const Dashboard = () => {
             </div>
             <div className="charts">
                 {loading ? <p> Loading... </p>:
-                  <Chart height={'700px'} width={'900px'} filter={visibleTags.length > 0 ? {$or: visibleTags.map((tag) => (
+                  <Chart filter={visibleTags.length > 0 ? {$or: visibleTags.map((tag) => (
                     {"hashtag": tag}))
                 } : {}} chartId={'62bb62ba-852c-4661-88a5-6e06248f22bf'}/>
                 }

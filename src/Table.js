@@ -22,7 +22,7 @@ const Table = ({ setVisibleItem, visibleTags}) => {
                 const existingTags = cache.readQuery({
                     query: GET_TAGS,
                 });
-
+                
                 cache.writeQuery({
                     query: GET_TAGS,
                     data: {
@@ -57,7 +57,12 @@ const Table = ({ setVisibleItem, visibleTags}) => {
 
 
     const handleSubmit = () => {
-        if (inText){
+        let existingTags = data.hashtags.map(hashtagObj => hashtagObj.hashtag)
+        if (existingTags.includes(inText)){
+            setInText("")
+        }
+
+        if (inText && !existingTags.includes(inText)){
             mutateAddTag({
                 variables: { inText }
             })
@@ -113,7 +118,7 @@ const Table = ({ setVisibleItem, visibleTags}) => {
             <TagSearch inputText={searchText} handleSearchChange={handleSearchChange}/> 
 
         </thead>
-        <tbody style={{display: "block", height: "500px", width: "100%", overflowY: "auto"}}>
+        <tbody style={{display: "block", height: "400px", width: "100%", overflowY: "auto"}}>
             {data.hashtags.map((obj) => {
                 
                 if(obj.hashtag.startsWith(searchText)){

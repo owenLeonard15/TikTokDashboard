@@ -5,7 +5,9 @@
 import React, {useEffect, useRef, useState} from 'react';
 import ChartsEmbedSDK from "@mongodb-js/charts-embed-dom";
 
-const Chart = ({filter, chartId, height, width}) => {
+const Chart = ({filter, chartId}) => {
+  const width = window.innerWidth * .5;
+  const height = window.innerHeight * .8;
   const sdk = new ChartsEmbedSDK({baseUrl: 'https://charts.mongodb.com/charts-project-0-dabvu'});  
   const chartDiv = useRef(null);
   const [rendered, setRendered] = useState(false);
