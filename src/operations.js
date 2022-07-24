@@ -27,7 +27,11 @@ export const DELETE_TAG_METRICS = gql`
 
 export const GET_TAGS = gql`
   query GetTags{
-    hashtags {
+    hashtags (
+        query: {}
+        limit: 5000
+        sortBy: _ID_DESC
+    ){
         _id
         hashtag
     }
