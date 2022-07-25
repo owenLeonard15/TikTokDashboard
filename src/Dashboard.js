@@ -2,18 +2,40 @@ import './Dashboard.css';
 import Table from './Table.js';
 import Chart from "./Chart";
 import { useQuery} from '@apollo/client';
-import { GET_TAGS} from './operations';
+import { GET_TAGS, GET_METRICS} from './operations';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileExport } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react';
-// Import everything needed to use the `useQuery` hook
+import { ExportToCsv } from 'export-to-csv';
+
+const current = new Date();
+const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()}`;
+
+const csvOptions = { 
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalSeparator: '.',
+    showLabels: true, 
+    showTitle: true,
+    title: ('TikTok Hashtag Views as of ' + date),
+    useTextFile: false,
+    useBom: true,
+    useKeysAsHeaders: true,
+    // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+  };
+
+const csvExporter = new ExportToCsv(csvOptions);
+
 
 
 
 const Dashboard = () => {
+
+    
     const { loading, error, data } = useQuery(
-        GET_TAGS,
+        GET_METRICS,
     );
+
     const [visibleTags, setVisibleTags] = useState([])
 
     const unhideTag = (tag) => {
@@ -27,6 +49,10 @@ const Dashboard = () => {
         }
     }
 
+
+    const exportCSV = () => {  
+        csvExporter.generateCsv(data.metrics);
+    }
     
     
 
@@ -39,8 +65,8 @@ const Dashboard = () => {
         <div className="row" style={{"display": "flex", "flexDirection": "row", "height": "100%", "width": "100%", "justifyContent": "center", "flexWrap": "wrap-reverse", "alignItems": "center"}}>
             <div className="list" style={{"paddingRight": "10%"}}>
                 <Table setVisibleItem={unhideTag} visibleTags={visibleTags}/>
-                <div className='exportButton' style={{"display": "flex", "cursor": "pointer","alignItems": "center", "justifyContent": "center","padding": "0px 10px", "margin": "10px", "borderRadius": "15px", "fontSize": "15px"}}>
-                    <p>export as .csv</p>
+                <div onClickCapture={exportCSV} className='exportButton' style={{"display": "flex", "cursor": "pointer","alignItems": "center", "justifyContent": "center","padding": "0px 10px", "margin": "10px", "borderRadius": "15px", "fontSize": "15px"}}>
+                    <p >export as .csv</p>
                     <FontAwesomeIcon style={{"padding": "0 5px 0 10px", "color": "#183153"}} icon={faFileExport} />
                 </div>
             </div>

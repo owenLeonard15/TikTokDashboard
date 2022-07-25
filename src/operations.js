@@ -38,6 +38,20 @@ export const GET_TAGS = gql`
 }
 `;
 
+export const GET_METRICS = gql`
+    query GetMetrics{
+        metrics (
+            query: {}
+            limit: 1000000
+            sortBy: HASHTAG_ASC
+        ) {
+            hashtag
+            views
+            date
+        }
+    }
+`
+
 
 
 
