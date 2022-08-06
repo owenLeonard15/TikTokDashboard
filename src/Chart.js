@@ -6,8 +6,8 @@ import React, {useEffect, useRef, useState} from 'react';
 import ChartsEmbedSDK from "@mongodb-js/charts-embed-dom";
 
 const Chart = ({filter, chartId}) => {
-  const width = window.innerWidth * .5;
-  const height = window.innerHeight * .8;
+  const width = window.innerWidth * .6;
+  const height = window.innerHeight * .75;
   const sdk = new ChartsEmbedSDK({baseUrl: 'https://charts.mongodb.com/charts-project-0-dabvu'});  
   const chartDiv = useRef(null);
   const [rendered, setRendered] = useState(false);
@@ -23,6 +23,7 @@ const Chart = ({filter, chartId}) => {
 
   useEffect(() => {
     if (rendered) {
+        console.log("setting filter", filter)
       chart.setFilter(filter).catch(err => console.log("Error while filtering.", err));
     }
   }, [chart, filter, rendered]);

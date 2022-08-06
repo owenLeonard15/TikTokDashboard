@@ -29,7 +29,7 @@ export const GET_TAGS = gql`
   query GetTags{
     hashtags (
         query: {}
-        limit: 5000
+        limit: 100000
         sortBy: _ID_DESC
     ){
         _id
@@ -42,7 +42,7 @@ export const GET_METRICS = gql`
     query GetMetrics{
         metrics (
             query: {}
-            limit: 1000000
+            limit: 100000000
             sortBy: HASHTAG_ASC
         ) {
             hashtag

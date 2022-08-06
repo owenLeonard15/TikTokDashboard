@@ -1,4 +1,4 @@
-import { useQuery, gql, useMutation} from '@apollo/client';
+import { useQuery, useMutation} from '@apollo/client';
 import { ADD_TAG, DELETE_TAG, DELETE_TAG_METRICS, GET_TAGS} from './operations';
 import TagInput from './TagInput';
 import TagSearch from './TagSearch';

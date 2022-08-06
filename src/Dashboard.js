@@ -2,10 +2,10 @@ import './Dashboard.css';
 import Table from './Table.js';
 import Chart from "./Chart";
 import { useQuery} from '@apollo/client';
-import { GET_TAGS, GET_METRICS} from './operations';
+import { GET_METRICS} from './operations';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileExport } from '@fortawesome/free-solid-svg-icons'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ExportToCsv } from 'export-to-csv';
 
 const current = new Date();
@@ -30,13 +30,21 @@ const csvExporter = new ExportToCsv(csvOptions);
 
 
 const Dashboard = () => {
-
-    
+    const [selectValue, setSelectValue] = useState("")
+    const [dateFilter, setDateFilter ] = useState("")
     const { loading, error, data } = useQuery(
         GET_METRICS,
     );
-
     const [visibleTags, setVisibleTags] = useState([])
+    const dateOptions = [
+        {label: 'All Time', value: "100000"}, 
+        {label: 'Last Year', value: 365},
+        {label: 'Last 6 Months', value: 180},
+        {label: 'Last 1 Month', value: 30},
+        {label: 'Last 2 Weeks', value: 14},
+        {label: 'Last 1 Week', value: 7},
+
+    ]
 
     const unhideTag = (tag) => {
         // remove from visible tags
@@ -53,7 +61,14 @@ const Dashboard = () => {
     const exportCSV = () => {  
         csvExporter.generateCsv(data.metrics);
     }
-    
+
+
+    const changeSelectValue = e => {
+        setSelectValue(e.target.value)
+        const currentDate = new Date();
+        const priordate =  new Date(currentDate.setDate(currentDate.getDate() - e.target.value));
+        setDateFilter(priordate.toISOString().substring(0,10).toString())
+    }
     
 
 
@@ -73,10 +88,25 @@ const Dashboard = () => {
             <div className="charts">
                 {loading ? <p> Loading... </p>:
                   <Chart filter={visibleTags.length > 0 ? {$or: visibleTags.map((tag) => (
-                    {"hashtag": tag}))
-                } : {}} chartId={'62bb62ba-852c-4661-88a5-6e06248f22bf'}/>
+                    {
+                        "hashtag": tag,
+                        "date": {$gte: dateFilter}
+                    }))
+                } : {
+                    "date": {$gte: dateFilter} 
+                }} chartId={'62bb62ba-852c-4661-88a5-6e06248f22bf'}/>
                 }
               
+            </div>
+            <div style={{"width": "100%"}}>
+                <label style={{"display": "flex", "flexDirection": "row", "justifyContent": "flex-end", "alignItems": "center", "color": "white", "paddingRight": "20px"}}>
+                    <h3 style={{"paddingRight": "10px"}}>Date Filter: </h3>
+                    <select value={selectValue} onChange={changeSelectValue}>
+                        {dateOptions.map((option) => (
+                            <option value={option.value}>{option.label}</option>
+                        ))}
+                    </select>
+                </label>
             </div>
         </div>
     
