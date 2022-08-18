@@ -12,6 +12,15 @@
     font-weight: bold;
 }
 
+.timeButton {
+    color: black
+}
+
+.timeButton:hover {
+    cursor: pointer;
+    color: whitesmoke;
+}
+
 
 th {
     padding: 10px 20px;

@@ -30,7 +30,7 @@ const csvExporter = new ExportToCsv(csvOptions);
 
 
 const Dashboard = () => {
-    const [selectValue, setSelectValue] = useState("")
+    const [selectValue, setSelectValue] = useState("All Time")
     const [dateFilter, setDateFilter ] = useState("")
     const { loading, error, data } = useQuery(
         GET_METRICS,
@@ -38,11 +38,11 @@ const Dashboard = () => {
     const [visibleTags, setVisibleTags] = useState([])
     const dateOptions = [
         {label: 'All Time', value: "100000"}, 
-        {label: 'Last Year', value: 365},
-        {label: 'Last 6 Months', value: 180},
-        {label: 'Last 1 Month', value: 30},
-        {label: 'Last 2 Weeks', value: 14},
-        {label: 'Last 1 Week', value: 7},
+        {label: '1Y', value: 365},
+        {label: '6M', value: 180},
+        {label: '1M', value: 30},
+        {label: '2W', value: 14},
+        {label: '1W', value: 7},
 
     ]
 
@@ -63,10 +63,10 @@ const Dashboard = () => {
     }
 
 
-    const changeSelectValue = e => {
-        setSelectValue(e.target.value)
+    const changeSelectValue = newVal => {
+        setSelectValue(newVal)
         const currentDate = new Date();
-        const priordate =  new Date(currentDate.setDate(currentDate.getDate() - e.target.value));
+        const priordate =  new Date(currentDate.setDate(currentDate.getDate() - newVal));
         setDateFilter(priordate.toISOString().substring(0,10).toString())
     }
     
@@ -86,6 +86,14 @@ const Dashboard = () => {
                 </div>
             </div>
             <div className="charts">
+                <div style={{"display": "flex", "flexDirection": "row", "justifyContent": "center"}}>
+                    {dateOptions.map((option) => (
+                        option.value === selectValue ?
+                        <p class="timeButton" onClick={() => changeSelectValue(option.value)} style={{"padding": "15px", "margin": "0 10px 20px 10px", "color": "white", "borderRadius": "10px", backgroundColor: "#25518f"}}>{option.label}</p>
+                        : <p class="timeButton" onClick={() => changeSelectValue(option.value)} style={{padding: "15px", margin: "0 10px 20px 10px", borderRadius: "10px", backgroundColor: "#25518f"}}>{option.label}</p>
+
+                    ))}
+                </div>
                 {loading ? <p> Loading... </p>:
                   <Chart filter={visibleTags.length > 0 ? {$or: visibleTags.map((tag) => (
                     {
@@ -97,16 +105,6 @@ const Dashboard = () => {
                 }} chartId={'62bb62ba-852c-4661-88a5-6e06248f22bf'}/>
                 }
               
-            </div>
-            <div style={{"width": "100%"}}>
-                <label style={{"display": "flex", "flexDirection": "row", "justifyContent": "flex-end", "alignItems": "center", "color": "white", "paddingRight": "20px"}}>
-                    <h3 style={{"paddingRight": "10px"}}>Date Filter: </h3>
-                    <select value={selectValue} onChange={changeSelectValue}>
-                        {dateOptions.map((option) => (
-                            <option value={option.value}>{option.label}</option>
-                        ))}
-                    </select>
-                </label>
             </div>
         </div>
     
