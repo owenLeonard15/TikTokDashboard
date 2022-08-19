@@ -1,3 +1,12 @@
+.buttonTitle {
+    color: white;
+    font-weight: lighter;
+    height: 100%;
+    padding: 15px;
+    margin: 0 10px 20px 10px;
+    width: 150px;
+}
+
 .exportButton:hover {
     background-color: lightgray;
     font-family: Arial, Helvetica, sans-serif;
@@ -13,12 +22,16 @@
 }
 
 .timeButton {
-    color: black
+    color: black;
+    width: 55px;
+    height: 10px;
+    font-size: small;
 }
 
 .timeButton:hover {
     cursor: pointer;
     color: whitesmoke;
+    font-weight: bold;
 }
 
 

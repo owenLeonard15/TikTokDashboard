@@ -11,22 +11,33 @@ const Chart = ({filter, chartId}) => {
   const sdk = new ChartsEmbedSDK({baseUrl: 'https://charts.mongodb.com/charts-project-0-dabvu'});  
   const chartDiv = useRef(null);
   const [rendered, setRendered] = useState(false);
-  const [chart] = useState(sdk.createChart({
+  const [chart, setChart] = useState(sdk.createChart({
     chartId: chartId,
     height: height,
     width: width
 }));
 
   useEffect(() => {
-    chart.render(chartDiv.current).then(() => setRendered(true)).catch(err => console.log("Error during Charts rendering.", err));
+    chart.render(chartDiv.current)
+    .then(() => setRendered(true))
+    .catch(err => console.log("Error during Charts rendering.", err));
   }, [chart]);
 
   useEffect(() => {
+    setRendered(false)
+    setChart(sdk.createChart({
+      chartId: chartId,
+      height: height,
+      width: width,
+      filter: filter
+    }))
+  }, [chartId])
+
+  useEffect(() => {
     if (rendered) {
-        console.log("setting filter", filter)
       chart.setFilter(filter).catch(err => console.log("Error while filtering.", err));
     }
-  }, [chart, filter, rendered]);
+  }, [filter, rendered]);
 
   return <div className="chart" ref={chartDiv}/>;
 };
