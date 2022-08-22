@@ -49,10 +49,10 @@ const Dashboard = () => {
 
     const chartOptions = [
         {label: "Total", chartId: "62bb62ba-852c-4661-88a5-6e06248f22bf"},
-        {label: "%1W", chartId: "62febdf8-2abb-4832-89d4-de5fcc20c1f6"},
-        {label: "%1D", chartId: "d6330087-5673-425b-b3d4-6aa5c559e5a5"},
+        {label: "%1M", chartId: "521acd84-1415-4121-b08e-345ff7283f8b"},
         {label: "%2W", chartId: "dc50b809-0118-472a-8439-5f596a5a8030"},
-        {label: "%1M", chartId: "521acd84-1415-4121-b08e-345ff7283f8b"}
+        {label: "%1W", chartId: "62febdf8-2abb-4832-89d4-de5fcc20c1f6"},
+        {label: "%1D", chartId: "d6330087-5673-425b-b3d4-6aa5c559e5a5"}
     ]
 
     const unhideTag = (tag) => {
