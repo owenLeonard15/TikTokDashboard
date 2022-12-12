@@ -7,7 +7,7 @@ import ChartsEmbedSDK from "@mongodb-js/charts-embed-dom";
 
 const Chart = ({filter, chartId}) => {
   const width = window.innerWidth * .6;
-  const height = window.innerHeight * .75;
+  const height = window.innerHeight * .70;
   const sdk = new ChartsEmbedSDK({baseUrl: 'https://charts.mongodb.com/charts-project-0-dabvu'});  
   const chartDiv = useRef(null);
   const [rendered, setRendered] = useState(false);
@@ -39,7 +39,7 @@ const Chart = ({filter, chartId}) => {
     }
   }, [filter, rendered]);
 
-  return <div className="chart" ref={chartDiv}/>;
+  return <div style={{"boxShadow": "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)"}} className="chart" ref={chartDiv}/>;
 };
 
 export default Chart;

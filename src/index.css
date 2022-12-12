@@ -1,7 +1,5 @@
 html, body, #root {
   margin: 0;
   height: 100%;
-  background: #183153/* A gradient at the center of its container,
-  starting red, changing to blue, and finishing green */
-/* radial-gradient(circle at center, white 0, skyblue) */
+  background: white
 }

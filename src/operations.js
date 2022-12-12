@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const ADD_TAG = gql`
-    mutation addTag($inText: String!) {
-        insertOneHashtag(data:{hashtag: $inText}) {
+    mutation addTag($searchText: String!) {
+        insertOneHashtag(data:{hashtag: $searchText}) {
             _id
             hashtag
         }

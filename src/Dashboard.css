@@ -1,10 +1,19 @@
+.App {
+    background-color: whitesmoke;
+}
+
 .buttonTitle {
-    color: white;
+    color: black;
     font-weight: lighter;
     height: 100%;
     padding: 15px;
     margin: 0 10px 20px 10px;
     width: 150px;
+}
+
+.dropdown {
+    text-align: right;
+    border-color: white;
 }
 
 .exportButton:hover {
@@ -20,6 +29,59 @@
     color: #183153;
     font-weight: bold;
 }
+
+
+div.menu-container {
+	width: 100%;
+	margin: 45px auto 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu-item {
+	float: left;
+    position: relative;
+    width: 100%;
+}
+
+.menu-item ul {
+	margin-top: 5px;
+	list-style-type: none;
+	height: 0px;
+	overflow-y: scroll;
+    position: absolute;
+    top: 100%;
+    width: 250px;
+    overflow-x: hidden;
+    z-index: 200;
+    background-color: white;
+	
+	-webkit-transition: height .5s ease;
+    -moz-transition: height .5s ease;
+    -o-transition: height .5s ease;
+    -ms-transition: height .5s ease;
+    transition: height .5s ease;
+}
+
+.menu-item:hover ul {
+	height: 200px;
+}
+
+.menu-item ul li {
+	font-size: 16px;
+	width: 100%;
+	margin: 0 auto 0 auto;
+	border-radius: 10px;
+	margin-top: 5px;
+    overflow-x: hidden;
+}
+
+
+.select-search-option:hover{
+    background-color: lightblue;
+    color:gray
+}
+
 
 .timeButton {
     color: black;
@@ -45,16 +107,30 @@ tr {
 }
 
 .trData {
-    border-top: solid lightgray 1px;
-    color: #183153
+    color: #05152c
+}
+
+.submitIcon {
+    color: gray;
+    padding: 5px;
+
 }
 
 .submitIcon:hover {
     color: #25518f;
     cursor: pointer;
+    background-color: lightgray;
+    border-radius: 5px;
 }
 
 .eyeIcon:hover {
     color: lightgray;
     cursor: pointer;
+}
+.X {
+    color: gray;
+}
+.X:hover {
+    cursor: pointer;
+    color: black;
 }
