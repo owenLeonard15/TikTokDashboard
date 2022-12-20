@@ -42,7 +42,7 @@ function getWindowDimensions() {
 
 const Dashboard = () => {
     const [selectValue, setSelectValue] = useState(100000)
-    const [dateFilter, setDateFilter ] = useState("")
+    const [dateFilter, setDateFilter ] = useState(new Date("01-01-2022"))
     const [curChart, setCurChart] = useState({label: "Total", chartId: "62bb62ba-852c-4661-88a5-6e06248f22bf"})
     const { loading_metrics, metrics_error, metrics_data } = useQuery(
         GET_METRICS,
@@ -186,7 +186,7 @@ const Dashboard = () => {
         setSelectValue(newVal)
         const currentDate = new Date();
         const priordate =  new Date(currentDate.setDate(currentDate.getDate() - newVal.value));
-        setDateFilter(priordate.toISOString().substring(0,10).toString())
+        setDateFilter(new Date(priordate.toISOString().substring(0,10).toString()))
     }
 
 
