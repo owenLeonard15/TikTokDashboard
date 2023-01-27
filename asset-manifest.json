@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/TikTokDashboard/static/css/main.b55cdb7f.css",
-    "main.js": "/TikTokDashboard/static/js/main.cdc9f088.js",
+    "main.css": "/TikTokDashboard/static/css/main.53526cbf.css",
+    "main.js": "/TikTokDashboard/static/js/main.9eb495d2.js",
     "static/js/787.c7fe1984.chunk.js": "/TikTokDashboard/static/js/787.c7fe1984.chunk.js",
     "index.html": "/TikTokDashboard/index.html",
-    "main.b55cdb7f.css.map": "/TikTokDashboard/static/css/main.b55cdb7f.css.map",
-    "main.cdc9f088.js.map": "/TikTokDashboard/static/js/main.cdc9f088.js.map",
+    "main.53526cbf.css.map": "/TikTokDashboard/static/css/main.53526cbf.css.map",
+    "main.9eb495d2.js.map": "/TikTokDashboard/static/js/main.9eb495d2.js.map",
     "787.c7fe1984.chunk.js.map": "/TikTokDashboard/static/js/787.c7fe1984.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b55cdb7f.css",
-    "static/js/main.cdc9f088.js"
+    "static/css/main.53526cbf.css",
+    "static/js/main.9eb495d2.js"
   ]
 }
