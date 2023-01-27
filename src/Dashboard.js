@@ -1,33 +1,14 @@
 import './Dashboard.css';
 import TagSearchBar from './TagSearchBar.js';
 import Chart from "./Chart";
+import ExportButton from './ExportButton.js';
 import { useQuery, useMutation} from '@apollo/client';
-import { ADD_TAG, GET_METRICS, GET_TAGS} from './operations';
+import { ADD_TAG, GET_TAGS} from './operations';
 import { useEffect, useState } from 'react';
-// import { ExportToCsv } from 'export-to-csv';
+
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import './TagSearch.css';
-
-
-  
-// const current = new Date();
-// const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()}`;
-
-// const csvOptions = { 
-//     fieldSeparator: ',',
-//     quoteStrings: '"',
-//     decimalSeparator: '.',
-//     showLabels: true, 
-//     showTitle: true,
-//     title: ('TikTok Hashtag Views as of ' + date),
-//     useTextFile: false,
-//     useBom: true,
-//     useKeysAsHeaders: true,
-//     // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
-//   };
-
-// const csvExporter = new ExportToCsv(csvOptions);
 
 
 function getWindowDimensions() {
@@ -44,14 +25,12 @@ const Dashboard = () => {
     const [selectValue, setSelectValue] = useState(100000)
     const [dateFilter, setDateFilter ] = useState(new Date("01-01-2022"))
     const [curChart, setCurChart] = useState({label: "Total", chartId: "62bb62ba-852c-4661-88a5-6e06248f22bf"})
-    const { loading_metrics, metrics_error, metrics_data } = useQuery(
-        GET_METRICS,
-    );
-    const { loading, error, data } = useQuery(
+   
+    const { loading, error, data} = useQuery(
         GET_TAGS
     );
 
-    const [mutateAddTag, resAddTagData] = useMutation(
+    const [ mutateAddTag ] = useMutation(
         ADD_TAG,
         {
             update (cache, { data }) {
@@ -177,10 +156,6 @@ const Dashboard = () => {
         }
     }
 
-    // const exportCSV = () => {  
-    //     csvExporter.generateCsv(metrics_data.metrics);
-    // }
-
 
     const changeSelectValue = newVal => {
         setSelectValue(newVal)
@@ -278,10 +253,13 @@ const Dashboard = () => {
             </div>
         </header>
         
-        <div className="row" style={{"top": "300px", "display": "flex", "flexDirection": "row", "height": "100%", "width": "100%", "justifyContent": "center", "flexWrap": "wrap-reverse", "alignItems": "center"}}>
+        <div className="row" style={{"top": "300px", "display": "flex", "flexDirection": "row", "height": "100%", "width": "100%", "justifyContent": "space-around", "flexWrap": "wrap-reverse", "alignItems": "center"}}>
+            <div className='leftColumn'>
+                <ExportButton currentTags={visibleTags}/>
+            </div>
             <div className="charts">
 
-                {loading_metrics ? <p> Loading... </p>:
+                {loading ? <p> Loading... </p>:
                   <Chart filter={visibleTags.length > 0 ? {$or: visibleTags.map((tag) => (
                     {
                         "hashtag": tag,
@@ -292,6 +270,8 @@ const Dashboard = () => {
                 }} chartId={curChart.chartId}/>
                 }
               
+            </div>
+            <div className='rightColumn'>
             </div>
         </div>
     

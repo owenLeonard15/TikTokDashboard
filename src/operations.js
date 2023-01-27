@@ -52,6 +52,20 @@ export const GET_METRICS = gql`
     }
 `
 
+export const GET_METRICS_FROM_LIST = gql`
+    query GetMetrics($currentTags: [String]!){
+        metrics(
+            query: {hashtag_in: $currentTags}
+            limit: 100000000
+            sortBy: HASHTAG_ASC
+        ) {
+        hashtag
+        views
+        date
+        }
+    }
+`
+
 
 
 
