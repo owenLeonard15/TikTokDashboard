@@ -1,6 +1,7 @@
 import './Dashboard.css';
 import TagSearchBar from './TagSearchBar.js';
 import Chart from "./Chart";
+import Trending from './Trending';
 import ExportButton from './ExportButton.js';
 import { useQuery, useMutation} from '@apollo/client';
 import { ADD_TAG, GET_TAGS} from './operations';
@@ -171,10 +172,20 @@ const Dashboard = () => {
     }   
 
 
-    return <div className="App" style={{"display": "flex", "alignItems": "center", "justifyContent": "center", "flexDirection": "column", "width": "100%", "height": "100%"}}>
-        <header style={{"display": "flex", "flexDirection": "column", "width": "100%", "height": "250px", "justifyContent": "center", "alignItems": "center", "backgroundColor": "white", "boxShadow": "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"}}>
+    return <div style={{
+                "display": "flex", 
+                "alignItems": "center", 
+                "justifyContent": "center", 
+                "flexDirection": "column", 
+                "width": "100%", 
+                "margin": "0", 
+                "top": "0", 
+                "overflowY": "scroll"
+        }}>
+
+        <div style={{"display": "flex", "flexDirection": "column", "width": "100%", "height": "100%", "justifyContent": "center", "alignItems": "center", "backgroundColor": "white", "boxShadow": "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"}}>
             <div style={{"height": "75px", "display": "flex", "justifyContent": "flex-start", "flexDirection": "row", "width": "100%", "alignItems": "flex-end", "backgroundColor": "#1d2631", "zIndex": "1", "boxShadow": "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"}}>
-                <img style={{"width": "auto", "maxHeight": "60px", "margin": "10px"}} alt="dcdx logo" src="https://images.squarespace-cdn.com/content/v1/5b1bb66e25bf023fcbe92110/b27e8c59-ec3e-49ef-9792-f7b9de91272a/websitelogodcdx.png?format=1500w" />
+                <img style={{"width": "auto", "maxHeight": "60px", "padding": "10px"}} alt="dcdx logo" src="https://images.squarespace-cdn.com/content/v1/5b1bb66e25bf023fcbe92110/b27e8c59-ec3e-49ef-9792-f7b9de91272a/websitelogodcdx.png?format=1500w" />
             </div>
             <div className="menu-container">
             {
@@ -251,9 +262,9 @@ const Dashboard = () => {
                     />
                 </div>
             </div>
-        </header>
+        </div>
         
-        <div className="row" style={{"top": "300px", "display": "flex", "flexDirection": "row", "height": "100%", "width": "100%", "justifyContent": "space-around", "flexWrap": "wrap-reverse", "alignItems": "center"}}>
+        <div className="row" style={{"display": "flex", "paddingTop": "30px", "flexDirection": "row", "height": "100%", "width": "100%", "justifyContent": "space-around", "flexWrap": "wrap-reverse", "alignItems": "center"}}>
             <div className='leftColumn'>
                 <ExportButton currentTags={visibleTags}/>
             </div>
@@ -271,6 +282,15 @@ const Dashboard = () => {
                 }
               
             </div>
+            <div className='rightColumn'>
+            </div>
+        </div>
+        
+        <div className="row" style={{"display": "flex", "paddingTop": "30px", "flexDirection": "row", "height": "100%", "width": "100%", "justifyContent": "space-around", "flexWrap": "wrap-reverse", "alignItems": "center"}}>
+            <div className='leftColumn' style={{"visibility": "hidden"}}>
+                <ExportButton currentTags={visibleTags}/>
+            </div>
+                <Trending />
             <div className='rightColumn'>
             </div>
         </div>

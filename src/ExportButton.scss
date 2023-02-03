@@ -22,7 +22,7 @@ $btn_indigo: #3f51b5;
     user-select: none;
     border-radius: 2px;
     transition: all .3s ease-out;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.225);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     color: #FFF;
     background-color: $btn_indigo;
     &:hover { background-color: lighten($btn_indigo, 8%); }

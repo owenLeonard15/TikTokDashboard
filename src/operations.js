@@ -67,7 +67,58 @@ export const GET_METRICS_FROM_LIST = gql`
 `
 
 
+export const GET_PCT_CHANGES_ONE_DAY = gql`
+query GetMetricPercentChanges($today: String!){
+    metric_pct_changes(
+        query: {date: $today }, 
+        limit:10, 
+        sortBy: ONE_DAY_DESC
+        ) {
+        _id
+        hashtag
+        one_day
+    }
+  }
+`
 
+export const GET_PCT_CHANGES_ONE_WEEK = gql`
+query GetMetricPercentChanges($today: String!){
+    metric_pct_changes(
+        query: {date: $today }, 
+        limit:10, 
+        sortBy: ONE_WEEK_DESC
+        ) {
+        _id
+        hashtag
+        one_week
+    }
+  }
+`
 
+export const GET_PCT_CHANGES_TWO_WEEKS = gql`
+query GetMetricPercentChanges($today: String!){
+    metric_pct_changes(
+        query: {date: $today }, 
+        limit:10, 
+        sortBy: TWO_WEEKS_DESC
+        ) {
+        _id
+        hashtag
+        two_weeks
+    }
+  }
+`
 
- 
+export const GET_PCT_CHANGES_ONE_MONTH= gql`
+query GetMetricPercentChanges($today: String!){
+    metric_pct_changes(
+        query: {date: $today }, 
+        limit:10, 
+        sortBy: ONE_MONTH_DESC
+        ) {
+        _id
+        hashtag
+        one_month
+    }
+  }
+`
