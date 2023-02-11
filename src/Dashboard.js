@@ -248,7 +248,7 @@ const Dashboard = () => {
                         options={dateOptions}
                         onChange={value => changeSelectValue(value)}
                         value={selectValue.label}
-                        placeholder="Sample Window"
+                        placeholder="All Time"
                         className='dropdown'
                     />
                 </div>
@@ -256,8 +256,8 @@ const Dashboard = () => {
                     <Dropdown
                         options={chartOptions}
                         onChange={value => changeChartValue(value)}
-                        value={"Chart Type"}
-                        placeholder="Chart Type"
+                        value={curChart.label}
+                        placeholder="Total"
                         className='dropdown'
                     />
                 </div>
@@ -290,7 +290,7 @@ const Dashboard = () => {
             <div className='leftColumn' style={{"visibility": "hidden"}}>
                 <ExportButton currentTags={visibleTags}/>
             </div>
-                <Trending />
+                <Trending unhideTag={unhideTag} />
             <div className='rightColumn'>
             </div>
         </div>

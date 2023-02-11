@@ -3,7 +3,7 @@ import { GET_PCT_CHANGES_ONE_DAY, GET_PCT_CHANGES_ONE_WEEK, GET_PCT_CHANGES_TWO_
 import './Trending.css';
 
 
-const Trending = () => {
+const Trending = ({ unhideTag }) => {
 
     const width = window.innerWidth * .6;
      
@@ -45,7 +45,8 @@ const Trending = () => {
         "flexDirection": "column",
         "justifyContent": "flex-start",
         "alignItems": "center",
-        "marginBottom": "50px"
+        "marginBottom": "50px",
+        "borderTop": "1px solid lightgray"
         }}>
             <h2 style={{"fontWeight": "normal", "fontSize": "25px"}}>Trending - % Change in 2 Weeks</h2>
             {/* THIS CONTAINS BOTH ROWS*/}
@@ -81,13 +82,14 @@ const Trending = () => {
                     }}>
                         {
                             two_weeks_data.data.metric_pct_changes.slice(0, 5).map((metric_obj, index) => 
-                                <div className="trendingSquare" 
+                                <div className="trendingSquare" key={index}
                                     style={{
                                         "display":"flex", 
                                         "flexDirection":"column", 
                                         "justifyContent":"center", 
                                         "height":"100%", "width":"20%"
-                                    }}> 
+                                    }}
+                                    onClick={e => unhideTag(e, metric_obj.hashtag)}> 
                                     <div style={{"fontSize":"20px", "paddingBottom":"5px"}}>{ metric_obj.hashtag } </div>
                                     <div style={{"color":"gray"}}>{ Math.trunc(metric_obj.two_weeks * 100)}%</div>
                                 </div>
@@ -121,14 +123,15 @@ const Trending = () => {
                     }}>
                         {
                             two_weeks_data.data.metric_pct_changes.slice(5,10).map((metric_obj, index) => 
-                                <div className="trendingSquare" 
+                                <div className="trendingSquare" key={index}
                                     style={{
                                         "display":"flex", 
                                         "flexDirection":"column", 
                                         "justifyContent":"center", 
                                         "height":"100%", 
                                         "width":"20%"
-                                    }}> 
+                                    }}
+                                    onClick={e => unhideTag(e, metric_obj.hashtag)}> 
                                     <div style={{"fontSize":"20px", "paddingBottom":"5px"}}>{ metric_obj.hashtag } </div>
                                     <div style={{"color":"gray"}}>{ Math.trunc(metric_obj.two_weeks * 100)}%</div>
                                 </div>
