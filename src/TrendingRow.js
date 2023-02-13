@@ -7,16 +7,17 @@ const TrendingRow = ({ unhideTag, data, titleString, object_key}) => {
         "boxShadow": "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)", 
         "height": "400px", 
         "width": width,
-        "backgroundColor": "white",
+        "backgroundColor": "#1d2631",
         "zIndex": "3",
         "display": "flex",
         "flexDirection": "column",
         "justifyContent": "flex-start",
         "alignItems": "center",
         "marginBottom": "50px",
-        "borderTop": "1px solid lightgray"
+        "borderTop": "1px solid lightgray",
+        "borderRadius":"5px"
         }}>
-            <h2 style={{"fontWeight": "normal", "fontSize": "25px"}}>Trending - % Change in {titleString}</h2>
+            <h2 style={{"fontWeight": "normal", "fontSize": "25px", "color":"white"}}>Trending - % Change in {titleString}</h2>
             {/* THIS CONTAINS BOTH ROWS*/}
             <div style={{
                     "display": "flex", 
@@ -105,7 +106,6 @@ const TrendingRow = ({ unhideTag, data, titleString, object_key}) => {
                                 </div>
                             )
                         }
-                        {console.log(data.data)}
                         </div>
                     }
                 </div>

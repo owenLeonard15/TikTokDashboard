@@ -184,9 +184,6 @@ const Dashboard = () => {
         }}>
 
         <div style={{"display": "flex", "flexDirection": "column", "width": "100%", "height": "100%", "justifyContent": "center", "alignItems": "center", "backgroundColor": "white", "boxShadow": "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"}}>
-            <div style={{"height": "75px", "display": "flex", "justifyContent": "flex-start", "flexDirection": "row", "width": "100%", "alignItems": "flex-end", "backgroundColor": "#1d2631", "zIndex": "1", "boxShadow": "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"}}>
-                <img style={{"width": "auto", "maxHeight": "60px", "padding": "10px"}} alt="dcdx logo" src="https://images.squarespace-cdn.com/content/v1/5b1bb66e25bf023fcbe92110/b27e8c59-ec3e-49ef-9792-f7b9de91272a/websitelogodcdx.png?format=1500w" />
-            </div>
             <div className="menu-container">
             {
                     visibleTags.map((tag) => 
