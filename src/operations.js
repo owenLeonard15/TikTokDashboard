@@ -76,7 +76,7 @@ query GetMetricPercentChanges($today: String!){
         ) {
         _id
         hashtag
-        one_day
+        responseData: one_day
     }
   }
 `
@@ -90,7 +90,7 @@ query GetMetricPercentChanges($today: String!){
         ) {
         _id
         hashtag
-        one_week
+        responseData: one_week
     }
   }
 `
@@ -104,7 +104,7 @@ query GetMetricPercentChanges($today: String!){
         ) {
         _id
         hashtag
-        two_weeks
+        responseData: two_weeks
     }
   }
 `
@@ -118,7 +118,7 @@ query GetMetricPercentChanges($today: String!){
         ) {
         _id
         hashtag
-        one_month
+        responseData: one_month
     }
   }
 `

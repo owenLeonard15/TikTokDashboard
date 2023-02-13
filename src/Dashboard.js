@@ -172,7 +172,8 @@ const Dashboard = () => {
     }   
 
 
-    return <div style={{
+    return loading ? <div>LOADING DATA... </div> :
+        <div style={{
                 "display": "flex", 
                 "alignItems": "center", 
                 "justifyContent": "center", 

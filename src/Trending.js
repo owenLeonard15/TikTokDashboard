@@ -1,11 +1,11 @@
 import { useQuery } from '@apollo/client';
 import { GET_PCT_CHANGES_ONE_DAY, GET_PCT_CHANGES_ONE_WEEK, GET_PCT_CHANGES_TWO_WEEKS, GET_PCT_CHANGES_ONE_MONTH } from './operations';
 import './Trending.css';
+import TrendingRow from './TrendingRow';
 
 
 const Trending = ({ unhideTag }) => {
 
-    const width = window.innerWidth * .6;
      
 
     var tzoffset = (new Date()).getTimezoneOffset() *  60000; //offset in milliseconds
@@ -35,113 +35,12 @@ const Trending = ({ unhideTag }) => {
         }
     );
 
-    return <div style={{
-        "boxShadow": "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)", 
-        "height": "400px", 
-        "width": width,
-        "backgroundColor": "white",
-        "zIndex": "3",
-        "display": "flex",
-        "flexDirection": "column",
-        "justifyContent": "flex-start",
-        "alignItems": "center",
-        "marginBottom": "50px",
-        "borderTop": "1px solid lightgray"
-        }}>
-            <h2 style={{"fontWeight": "normal", "fontSize": "25px"}}>Trending - % Change in 2 Weeks</h2>
-            {/* THIS CONTAINS BOTH ROWS*/}
-            <div style={{
-                    "display": "flex", 
-                    "flexDirection": "column", 
-                    "justifyContent":"space-around", 
-                    "alignItems":"flex-start",
-                    "height": "100%",
-                    "width": "100%"
-                }}>
-
-                {/* FIRST ROW */}
-                <div style={{
-                        "width": "100%",
-                        "display": "flex", 
-                        "justifyContent": "space-around",
-                        "alignItems":"space-around", 
-                        "height":"100%",
-                        "borderTop":"solid lightgray 1px"
-                    }}>
-                    {two_weeks_data.loading ? <div>Loading Data... </div> 
-                    :  two_weeks_data.error  ? 
-                        <div>
-                            unable to load data :(
-                        </div>
-                    : <div style={{
-                        "width": "100%",
-                        "display": "flex", 
-                        "justifyContent": "space-around",
-                        "alignItems":"space-around", 
-                        "height": "100%",
-                    }}>
-                        {
-                            two_weeks_data.data.metric_pct_changes.slice(0, 5).map((metric_obj, index) => 
-                                <div className="trendingSquare" key={index}
-                                    style={{
-                                        "display":"flex", 
-                                        "flexDirection":"column", 
-                                        "justifyContent":"center", 
-                                        "height":"100%", "width":"20%"
-                                    }}
-                                    onClick={e => unhideTag(e, metric_obj.hashtag)}> 
-                                    <div style={{"fontSize":"20px", "paddingBottom":"5px"}}>{ metric_obj.hashtag } </div>
-                                    <div style={{"color":"gray"}}>{ Math.trunc(metric_obj.two_weeks * 100)}%</div>
-                                </div>
-                            )
-                        }
-                        </div>
-                    }
-                    
-                </div>
-                
-                {/* SECOND ROW */}
-                <div style={{
-                        "width": "100%",
-                        "display": "flex", 
-                        "justifyContent": "space-around",
-                        "alignItems":"space-around", 
-                        "height":"100%",
-                        "borderTop":"solid lightgray 1px"
-                    }}>
-                    {two_weeks_data.loading ? <div>Loading Data... </div> 
-                    :  two_weeks_data.error  ? 
-                        <div>
-                            unable to load data :(
-                        </div>
-                    : <div style={{
-                        "width": "100%",
-                        "display": "flex", 
-                        "justifyContent": "space-around",
-                        "alignItems":"space-around",
-                        "height": "100%",
-                    }}>
-                        {
-                            two_weeks_data.data.metric_pct_changes.slice(5,10).map((metric_obj, index) => 
-                                <div className="trendingSquare" key={index}
-                                    style={{
-                                        "display":"flex", 
-                                        "flexDirection":"column", 
-                                        "justifyContent":"center", 
-                                        "height":"100%", 
-                                        "width":"20%"
-                                    }}
-                                    onClick={e => unhideTag(e, metric_obj.hashtag)}> 
-                                    <div style={{"fontSize":"20px", "paddingBottom":"5px"}}>{ metric_obj.hashtag } </div>
-                                    <div style={{"color":"gray"}}>{ Math.trunc(metric_obj.two_weeks * 100)}%</div>
-                                </div>
-                            )
-                        }
-                        </div>
-                    }
-                </div>
-            </div>
-    </div>
+    return <div>
+            <TrendingRow titleString={"1 Day"} unhideTag={unhideTag} data={one_day_data}/>
+            <TrendingRow titleString={"1 Week"} unhideTag={unhideTag} data={one_week_data}/>
+            <TrendingRow titleString={"2 Weeks"} unhideTag={unhideTag} data={two_weeks_data}/>
+            <TrendingRow titleString={"1 Month"} unhideTag={unhideTag} data={one_month_data}/>
+        </div>
 }
 
 export default Trending;
