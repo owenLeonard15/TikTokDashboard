@@ -180,8 +180,7 @@ const Dashboard = () => {
                 "flexDirection": "column", 
                 "width": "100%", 
                 "margin": "0", 
-                "top": "0", 
-                "overflowY": "scroll"
+                "top": "0"
         }}>
 
         <div style={{"display": "flex", "flexDirection": "column", "width": "100%", "height": "100%", "justifyContent": "center", "alignItems": "center", "backgroundColor": "white", "boxShadow": "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"}}>
@@ -291,7 +290,7 @@ const Dashboard = () => {
             <div className='leftColumn' style={{"visibility": "hidden"}}>
                 <ExportButton currentTags={visibleTags}/>
             </div>
-                <Trending unhideTag={unhideTag} />
+                <Trending  style={{"paddingTop": "20px"}} unhideTag={unhideTag} />
             <div className='rightColumn'>
             </div>
         </div>

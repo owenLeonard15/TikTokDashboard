@@ -36,10 +36,10 @@ const Trending = ({ unhideTag }) => {
     );
 
     return <div>
-            <TrendingRow titleString={"1 Day"} unhideTag={unhideTag} data={one_day_data}/>
-            <TrendingRow titleString={"1 Week"} unhideTag={unhideTag} data={one_week_data}/>
-            <TrendingRow titleString={"2 Weeks"} unhideTag={unhideTag} data={two_weeks_data}/>
-            <TrendingRow titleString={"1 Month"} unhideTag={unhideTag} data={one_month_data}/>
+            <TrendingRow titleString={"1 Day"} unhideTag={unhideTag} data={one_day_data} object_key={"one_day"}/>
+            <TrendingRow titleString={"1 Week"} unhideTag={unhideTag} data={one_week_data} object_key={"one_week"}/>
+            <TrendingRow titleString={"2 Weeks"} unhideTag={unhideTag} data={two_weeks_data} object_key={"two_weeks"}/>
+            <TrendingRow titleString={"1 Month"} unhideTag={unhideTag} data={one_month_data} object_key={"one_month"}/>
         </div>
 }
 

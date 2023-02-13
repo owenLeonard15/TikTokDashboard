@@ -1,6 +1,6 @@
 import './Trending.css';
 
-const TrendingRow = ({ unhideTag, data, titleString}) => {
+const TrendingRow = ({ unhideTag, data, titleString, object_key}) => {
     const width = window.innerWidth * .6;
 
     return <div style={{
@@ -59,7 +59,7 @@ const TrendingRow = ({ unhideTag, data, titleString}) => {
                                     }}
                                     onClick={e => unhideTag(e, metric_obj.hashtag)}> 
                                     <div style={{"fontSize":"20px", "paddingBottom":"5px"}}>{ metric_obj.hashtag } </div>
-                                    <div style={{"color":"gray"}}>{ Math.trunc(metric_obj.responseData * 100)}%</div>
+                                    <div style={{"color":"gray"}}>{ Math.trunc(metric_obj[object_key] * 100)}%</div>
                                 </div>
                             )
                         }
@@ -101,10 +101,11 @@ const TrendingRow = ({ unhideTag, data, titleString}) => {
                                     }}
                                     onClick={e => unhideTag(e, metric_obj.hashtag)}> 
                                     <div style={{"fontSize":"20px", "paddingBottom":"5px"}}>{ metric_obj.hashtag } </div>
-                                    <div style={{"color":"gray"}}>{ Math.trunc(metric_obj.responseData * 100)}%</div>
+                                    <div style={{"color":"gray"}}>{ Math.trunc(metric_obj[object_key] * 100)}%</div>
                                 </div>
                             )
                         }
+                        {console.log(data.data)}
                         </div>
                     }
                 </div>
