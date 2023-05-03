@@ -1,7 +1,8 @@
-import TagSearch from './TagSearch';
+import React from 'react';
+import {TagSearch} from './TagSearch.tsx';
 import './TagSearch.css'
 
-const TagSearchBar = ({ handleFocused, handleSearchChange, searchText }) => {
+export const TagSearchBar = ({ handleFocused, handleSearchChange, searchText }) => {
     
     return (
         <div className='select-search-container'>
@@ -9,6 +10,3 @@ const TagSearchBar = ({ handleFocused, handleSearchChange, searchText }) => {
         </div> 
     )
 }
-
-export default TagSearchBar
-

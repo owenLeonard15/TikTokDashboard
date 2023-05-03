@@ -1,10 +1,11 @@
+import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_PCT_CHANGES_ONE_DAY, GET_PCT_CHANGES_ONE_WEEK, GET_PCT_CHANGES_TWO_WEEKS, GET_PCT_CHANGES_ONE_MONTH } from './operations';
 import './Trending.css';
-import TrendingRow from './TrendingRow';
+import {TrendingRow} from './TrendingRow.tsx';
 
 
-const Trending = ({ unhideTag }) => {
+export const Trending = ({ unhideTag }) => {
 
      
 
@@ -42,5 +43,3 @@ const Trending = ({ unhideTag }) => {
             <TrendingRow titleString={"1 Month"} unhideTag={unhideTag} data={one_month_data} object_key={"one_month"}/>
         </div>
 }
-
-export default Trending;

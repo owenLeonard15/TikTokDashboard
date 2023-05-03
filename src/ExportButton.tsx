@@ -1,3 +1,4 @@
+import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_METRICS_FROM_LIST } from './operations';
 import { ExportToCsv } from 'export-to-csv';
@@ -22,7 +23,7 @@ const csvOptions = {
   const csvExporter = new ExportToCsv(csvOptions);
 
 
-const ExportButton = ({ currentTags }) => {
+export const ExportButton = ({ currentTags }) => {
 
     const { loading, error, data} = useQuery(
         GET_METRICS_FROM_LIST, {
@@ -41,5 +42,3 @@ const ExportButton = ({ currentTags }) => {
                 Export to CSV
         </button>
 }
-
-export default ExportButton;

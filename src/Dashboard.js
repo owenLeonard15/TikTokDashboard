@@ -1,8 +1,8 @@
 import './Dashboard.css';
-import TagSearchBar from './TagSearchBar.js';
+import {TagSearchBar} from './TagSearchBar.tsx';
 import Chart from "./Chart";
-import Trending from './Trending';
-import ExportButton from './ExportButton.js';
+import {Trending} from './Trending.tsx';
+import {ExportButton} from './ExportButton.tsx';
 import { useQuery, useMutation} from '@apollo/client';
 import { ADD_TAG, GET_TAGS} from './operations';
 import { useEffect, useState } from 'react';

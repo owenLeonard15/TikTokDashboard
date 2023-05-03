@@ -1,0 +1,302 @@
+type InsertManyPayload {
+  insertedIds: [ObjectId]!
+}
+
+scalar ObjectId
+
+scalar Long
+
+type Metric {
+  _id: ObjectId
+  date: String
+  hashtag: String
+  views: Long
+}
+
+type Mutation {
+  deleteManyHashtags(query: HashtagQueryInput): DeleteManyPayload
+  deleteManyMetric_pct_changes(query: Metric_pct_changeQueryInput): DeleteManyPayload
+  deleteManyMetrics(query: MetricQueryInput): DeleteManyPayload
+  deleteOneHashtag(query: HashtagQueryInput!): Hashtag
+  deleteOneMetric(query: MetricQueryInput!): Metric
+  deleteOneMetric_pct_change(query: Metric_pct_changeQueryInput!): Metric_pct_change
+  insertManyHashtags(data: [HashtagInsertInput!]!): InsertManyPayload
+  insertManyMetric_pct_changes(data: [Metric_pct_changeInsertInput!]!): InsertManyPayload
+  insertManyMetrics(data: [MetricInsertInput!]!): InsertManyPayload
+  insertOneHashtag(data: HashtagInsertInput!): Hashtag
+  insertOneMetric(data: MetricInsertInput!): Metric
+  insertOneMetric_pct_change(data: Metric_pct_changeInsertInput!): Metric_pct_change
+  replaceOneHashtag(query: HashtagQueryInput, data: HashtagInsertInput!): Hashtag
+  replaceOneMetric(query: MetricQueryInput, data: MetricInsertInput!): Metric
+  replaceOneMetric_pct_change(query: Metric_pct_changeQueryInput, data: Metric_pct_changeInsertInput!): Metric_pct_change
+  updateManyHashtags(query: HashtagQueryInput, set: HashtagUpdateInput!): UpdateManyPayload
+  updateManyMetric_pct_changes(set: Metric_pct_changeUpdateInput!, query: Metric_pct_changeQueryInput): UpdateManyPayload
+  updateManyMetrics(query: MetricQueryInput, set: MetricUpdateInput!): UpdateManyPayload
+  updateOneHashtag(set: HashtagUpdateInput!, query: HashtagQueryInput): Hashtag
+  updateOneMetric(query: MetricQueryInput, set: MetricUpdateInput!): Metric
+  updateOneMetric_pct_change(query: Metric_pct_changeQueryInput, set: Metric_pct_changeUpdateInput!): Metric_pct_change
+  upsertOneHashtag(query: HashtagQueryInput, data: HashtagInsertInput!): Hashtag
+  upsertOneMetric(query: MetricQueryInput, data: MetricInsertInput!): Metric
+  upsertOneMetric_pct_change(query: Metric_pct_changeQueryInput, data: Metric_pct_changeInsertInput!): Metric_pct_change
+}
+
+type Hashtag {
+  _id: ObjectId
+  hashtag: String
+}
+
+input MetricQueryInput {
+  OR: [MetricQueryInput!]
+  hashtag_gte: String
+  AND: [MetricQueryInput!]
+  _id_gte: ObjectId
+  _id_nin: [ObjectId]
+  views_ne: Long
+  hashtag_exists: Boolean
+  _id_ne: ObjectId
+  date_lt: String
+  _id: ObjectId
+  views_gte: Long
+  _id_gt: ObjectId
+  hashtag: String
+  _id_exists: Boolean
+  hashtag_in: [String]
+  hashtag_lt: String
+  date_gte: String
+  _id_lte: ObjectId
+  _id_lt: ObjectId
+  date_nin: [String]
+  views_in: [Long]
+  date: String
+  views_nin: [Long]
+  hashtag_ne: String
+  views_lte: Long
+  date_gt: String
+  views_gt: Long
+  views_exists: Boolean
+  hashtag_lte: String
+  date_ne: String
+  hashtag_nin: [String]
+  views: Long
+  views_lt: Long
+  date_lte: String
+  date_in: [String]
+  _id_in: [ObjectId]
+  date_exists: Boolean
+  hashtag_gt: String
+}
+
+input HashtagInsertInput {
+  _id: ObjectId
+  hashtag: String
+}
+
+input MetricUpdateInput {
+  hashtag_unset: Boolean
+  views: Long
+  views_unset: Boolean
+  _id: ObjectId
+  _id_unset: Boolean
+  date: String
+  date_unset: Boolean
+  hashtag: String
+}
+
+input Metric_pct_changeUpdateInput {
+  one_day_unset: Boolean
+  one_week_unset: Boolean
+  two_weeks: Float
+  one_week: Float
+  one_month_unset: Boolean
+  one_month_inc: Float
+  one_day_inc: Float
+  two_weeks_unset: Boolean
+  two_weeks_inc: Float
+  one_week_inc: Float
+  date: String
+  _id_unset: Boolean
+  _id: ObjectId
+  one_day: Float
+  hashtag_unset: Boolean
+  date_unset: Boolean
+  hashtag: String
+  one_month: Float
+}
+
+input HashtagQueryInput {
+  hashtag: String
+  hashtag_ne: String
+  _id_lte: ObjectId
+  hashtag_in: [String]
+  hashtag_nin: [String]
+  hashtag_exists: Boolean
+  _id_lt: ObjectId
+  _id: ObjectId
+  OR: [HashtagQueryInput!]
+  hashtag_gt: String
+  hashtag_lte: String
+  _id_gt: ObjectId
+  AND: [HashtagQueryInput!]
+  _id_in: [ObjectId]
+  hashtag_lt: String
+  _id_exists: Boolean
+  _id_ne: ObjectId
+  _id_gte: ObjectId
+  hashtag_gte: String
+  _id_nin: [ObjectId]
+}
+
+enum MetricSortByInput {
+  DATE_ASC
+  DATE_DESC
+  HASHTAG_ASC
+  HASHTAG_DESC
+  VIEWS_ASC
+  VIEWS_DESC
+  _ID_ASC
+  _ID_DESC
+}
+
+input MetricInsertInput {
+  _id: ObjectId
+  date: String
+  hashtag: String
+  views: Long
+}
+
+input HashtagUpdateInput {
+  hashtag: String
+  hashtag_unset: Boolean
+  _id: ObjectId
+  _id_unset: Boolean
+}
+
+type Metric_pct_change {
+  _id: ObjectId
+  date: String
+  hashtag: String
+  one_day: Float
+  one_month: Float
+  one_week: Float
+  two_weeks: Float
+}
+
+type UpdateManyPayload {
+  matchedCount: Int!
+  modifiedCount: Int!
+}
+
+input Metric_pct_changeInsertInput {
+  date: String
+  hashtag: String
+  one_day: Float
+  one_month: Float
+  one_week: Float
+  two_weeks: Float
+  _id: ObjectId
+}
+
+type Query {
+  hashtag(query: HashtagQueryInput): Hashtag
+  hashtags(query: HashtagQueryInput, limit: Int = 100, sortBy: HashtagSortByInput): [Hashtag]!
+  metric(query: MetricQueryInput): Metric
+  metric_pct_change(query: Metric_pct_changeQueryInput): Metric_pct_change
+  metric_pct_changes(limit: Int = 100, sortBy: Metric_pct_changeSortByInput, query: Metric_pct_changeQueryInput): [Metric_pct_change]!
+  metrics(query: MetricQueryInput, limit: Int = 100, sortBy: MetricSortByInput): [Metric]!
+}
+
+enum Metric_pct_changeSortByInput {
+  _ID_DESC
+  HASHTAG_DESC
+  ONE_MONTH_DESC
+  ONE_WEEK_DESC
+  TWO_WEEKS_DESC
+  _ID_ASC
+  ONE_DAY_ASC
+  ONE_WEEK_ASC
+  DATE_ASC
+  ONE_DAY_DESC
+  TWO_WEEKS_ASC
+  DATE_DESC
+  HASHTAG_ASC
+  ONE_MONTH_ASC
+}
+
+enum HashtagSortByInput {
+  HASHTAG_ASC
+  HASHTAG_DESC
+  _ID_ASC
+  _ID_DESC
+}
+
+type DeleteManyPayload {
+  deletedCount: Int!
+}
+
+input Metric_pct_changeQueryInput {
+  date_ne: String
+  one_month: Float
+  two_weeks_gte: Float
+  one_week: Float
+  one_day_nin: [Float]
+  _id_exists: Boolean
+  one_month_gte: Float
+  date_lte: String
+  _id_nin: [ObjectId]
+  one_day_gt: Float
+  two_weeks: Float
+  one_month_nin: [Float]
+  one_day_gte: Float
+  date_gt: String
+  one_day_lt: Float
+  one_month_exists: Boolean
+  one_day_lte: Float
+  hashtag_lte: String
+  one_day: Float
+  one_week_gt: Float
+  one_month_in: [Float]
+  _id: ObjectId
+  one_week_gte: Float
+  two_weeks_lt: Float
+  _id_gt: ObjectId
+  date_in: [String]
+  date_exists: Boolean
+  hashtag_gt: String
+  two_weeks_gt: Float
+  hashtag_in: [String]
+  _id_lte: ObjectId
+  date_gte: String
+  hashtag_lt: String
+  one_month_lte: Float
+  one_month_ne: Float
+  hashtag_ne: String
+  one_day_in: [Float]
+  one_month_gt: Float
+  OR: [Metric_pct_changeQueryInput!]
+  hashtag: String
+  one_day_exists: Boolean
+  hashtag_gte: String
+  one_week_ne: Float
+  hashtag_nin: [String]
+  two_weeks_lte: Float
+  two_weeks_in: [Float]
+  _id_gte: ObjectId
+  _id_in: [ObjectId]
+  date_nin: [String]
+  two_weeks_exists: Boolean
+  hashtag_exists: Boolean
+  date: String
+  one_day_ne: Float
+  _id_lt: ObjectId
+  one_week_lte: Float
+  two_weeks_nin: [Float]
+  one_week_in: [Float]
+  one_week_nin: [Float]
+  date_lt: String
+  AND: [Metric_pct_changeQueryInput!]
+  two_weeks_ne: Float
+  _id_ne: ObjectId
+  one_month_lt: Float
+  one_week_exists: Boolean
+  one_week_lt: Float
+}
