@@ -1,6 +1,5 @@
 # TikTok Hashtag Views Tracker 
 
-https://github.com/owenLeonard15/TikTokDashboard
 Invitation required to create an account.
 
 This is the front end for a web dashboard which displays data and trends (total views, percent growth, etc.) in hashtags over time. The data is collected by separate automated backend services on a daily basis. 
