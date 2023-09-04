@@ -290,14 +290,13 @@ const Dashboard = ({signOut}) => {
                     {
                             visibleTags.map((tag) => 
                                 <div key={tag} className="menu-item" style={{"height": "100%", "flexBasis": "25px", "margin": "10px", "padding": "0 15px", "borderRadius": "20px", "backgroundColor": "rgba(229, 229, 229, 1)"}}>
-                                    <div style={{"display":"flex", "flexDirection":"row", "justifyContent":"space-between"}}>
+                                    <div style={{"display":"flex", "flexDirection":"row", "justifyContent":"space-between", "alignItems":"center"}}>
                                         <p style={{"marginRight": "10px", "fontStyle": "italic", "display": "flex", "overflowWrap": "false"}}>#{tag}</p>
                                         {
                                             visibleTags.length > 1 
                                             ? 
-                                            <FontAwesomeIcon icon="fa-solid fa-xmark" className="X"  onClick={e => unhideTag(e, tag)}/>
-                                            // <p className="X" onClick={e => unhideTag(e, tag)}>X</p>
-                                            : <FontAwesomeIcon style={{"visibility":"hidden"}} icon="fa-solid fa-xmark" className="X"  onClick={e => unhideTag(e, tag)}/>
+                                            <FontAwesomeIcon icon={faXmark} className="X"  onClick={e => unhideTag(e, tag)}/>
+                                            : <FontAwesomeIcon style={{"visibility":"hidden"}} icon={faXmark} className="X"  onClick={e => unhideTag(e, tag)}/>
 
                                         }
                                     </div>
