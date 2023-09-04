@@ -71,7 +71,7 @@ export const GET_PCT_CHANGES_ONE_DAY = gql`
 query GetMetricPercentChanges($today: String!){
     metric_pct_changes(
         query: {date: $today }, 
-        limit:10, 
+        limit:100, 
         sortBy: ONE_DAY_DESC
         ) {
         _id
@@ -85,7 +85,7 @@ export const GET_PCT_CHANGES_ONE_WEEK = gql`
 query GetMetricPercentChanges($today: String!){
     metric_pct_changes(
         query: {date: $today }, 
-        limit:10, 
+        limit:100, 
         sortBy: ONE_WEEK_DESC
         ) {
         _id
@@ -99,7 +99,7 @@ export const GET_PCT_CHANGES_TWO_WEEKS = gql`
 query GetMetricPercentChanges($today: String!){
     metric_pct_changes(
         query: {date: $today }, 
-        limit:10, 
+        limit:100, 
         sortBy: TWO_WEEKS_DESC
         ) {
         _id
@@ -113,7 +113,7 @@ export const GET_PCT_CHANGES_ONE_MONTH= gql`
 query GetMetricPercentChanges($today: String!){
     metric_pct_changes(
         query: {date: $today }, 
-        limit:10, 
+        limit:100, 
         sortBy: ONE_MONTH_DESC
         ) {
         _id

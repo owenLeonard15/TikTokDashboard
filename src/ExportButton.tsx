@@ -36,9 +36,7 @@ export const ExportButton = ({ currentTags }) => {
         csvExporter.generateCsv(data.metrics);
     }
 
-    return loading 
-        ? <p>loading</p> 
-        : <button onClick={() => exportCSV()} className="rkmd-btn">
-                Export to CSV
+    return <button onClick={() => exportCSV()} className="rkmd-btn">
+                Export Trend
         </button>
 }

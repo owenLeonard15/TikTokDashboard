@@ -8,7 +8,7 @@
 }
 
 .dropdown {
-    text-align: right;
+    text-align: left;
     border-color: white;
 }
 
@@ -29,9 +29,9 @@
 
 div.menu-container {
 	width: 100%;
-	margin: 45px 0 0 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
+    flex-wrap: wrap-reverse;
 }
 
 .menu-item {
@@ -41,13 +41,13 @@ div.menu-container {
 }
 
 .menu-item ul {
-	margin-top: 5px;
+	margin-top: 10px;
 	list-style-type: none;
 	height: 0px;
 	overflow-y: scroll;
     position: absolute;
     top: 100%;
-    width: 250px;
+    width: 100%;
     overflow-x: hidden;
     z-index: 200;
     background-color: white;
@@ -66,16 +66,37 @@ div.menu-container {
 .menu-item ul li {
 	font-size: 16px;
 	width: 100%;
-	margin: 0 auto 0 auto;
-	border-radius: 10px;
+	margin: 0;
+	border-radius: 5px;
 	margin-top: 5px;
+    padding: 5px;
     overflow-x: hidden;
+    text-align: left;
 }
 
+.menu-item ul li:hover {
+    cursor: pointer;
+}
+
+.option-item {
+    background-color: rgba(229, 229, 229, 1);
+    border-radius: 20px;
+    margin: 10px;
+    width: 120px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-weight: bolder;
+}
+
+.option-item:hover {
+    cursor: pointer;
+    background-color: rgba(217, 217, 217, 1) !important;
+}
 
 .select-search-option:hover{
-    background-color: lightblue;
-    color:gray
+    background-color: rgba(217, 217, 217, 0.75);
+    color:black
 }
 
 
