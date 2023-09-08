@@ -2,7 +2,7 @@
   "name": "tiktok-dashboard",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://myusername.github.io/TikTokDashboard",
+  "homepage": "https://dashboard.dcdx.co",
   "dependencies": {
     "@apollo/client": "^3.6.9",
     "@aws-amplify/ui-react": "^4.3.7",
