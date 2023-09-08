@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/TikTokDashboard/static/css/main.d2af2ec5.css",
-    "main.js": "/TikTokDashboard/static/js/main.e81614a1.js",
-    "static/js/787.c7fe1984.chunk.js": "/TikTokDashboard/static/js/787.c7fe1984.chunk.js",
-    "index.html": "/TikTokDashboard/index.html",
-    "main.d2af2ec5.css.map": "/TikTokDashboard/static/css/main.d2af2ec5.css.map",
-    "main.e81614a1.js.map": "/TikTokDashboard/static/js/main.e81614a1.js.map",
-    "787.c7fe1984.chunk.js.map": "/TikTokDashboard/static/js/787.c7fe1984.chunk.js.map"
+    "main.css": "/static/css/main.d2af2ec5.css",
+    "main.js": "/static/js/main.552bf181.js",
+    "static/js/787.c7fe1984.chunk.js": "/static/js/787.c7fe1984.chunk.js",
+    "index.html": "/index.html",
+    "main.d2af2ec5.css.map": "/static/css/main.d2af2ec5.css.map",
+    "main.552bf181.js.map": "/static/js/main.552bf181.js.map",
+    "787.c7fe1984.chunk.js.map": "/static/js/787.c7fe1984.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d2af2ec5.css",
-    "static/js/main.e81614a1.js"
+    "static/js/main.552bf181.js"
   ]
 }
