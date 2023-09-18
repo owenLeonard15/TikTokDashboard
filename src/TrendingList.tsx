@@ -22,7 +22,7 @@ export const TrendingList = ({data, time_frame, time_frame_key}: TrendingListPro
   console.log(time_frame)  
   return (
       data.loading ? <div>Loading...</div> :
-        <div className="trending-list" style={{"display": "flex", "flexWrap": "wrap", "justifyContent": "space-evenlyc", "width": "100%"}}>
+        <div className="trending-list" style={{"display": "flex", "flexWrap": "wrap", "justifyContent": "space-evenly", "width": "100%"}}>
             { 
             data.data.metric_pct_changes.slice(0, 100).map((metric_obj, index) =>
                 <TrendingBox key={index} order_number={index} metric_obj={metric_obj} time_frame={time_frame} time_frame_key={time_frame_key} />
