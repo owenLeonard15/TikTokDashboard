@@ -1,0 +1,33 @@
+ .trending-box {
+    width: 500px;
+    height: 145px;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 20px;
+    margin-top: 50px;
+    display: flex;
+}
+
+.trending-box-index {
+    margin-top: 20px;
+    margin-left: 40px;
+    font-size: 55px;
+    width: 106px;
+    height: 106px;
+    background-color: rgba(184, 183, 183, 1);
+}
+
+.trending-box-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    margin-top: 20px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    line-height: 32px;
+
+}
+
+.trending-box-hashtag {
+    font-weight: bold;
+}
+

@@ -2,7 +2,7 @@ import './Dashboard.css';
 import {TagSearchBar} from './TagSearchBar.tsx';
 import Chart from "./Chart";
 import MultiLineChart from './MultiLineChart.tsx';
-import {Trending} from './Trending.tsx';
+import {Explore} from './Explore.tsx';
 import {ExportButton} from './ExportButton.tsx';
 import { useQuery, useMutation} from '@apollo/client';
 import { ADD_TAG, GET_TAGS} from './operations';
@@ -26,6 +26,7 @@ function getWindowDimensions() {
 
 
 const Dashboard = ({signOut}) => {
+    const [currentPage, setCurrentPage] = useState("dashboard")
     const [selectValue, setSelectValue] = useState({label: 'All Time', value: 100000})
     const [dateFilter, setDateFilter ] = useState(new Date("01-01-2022"))
     const [curChart, setCurChart] = useState({label: "Total", chartId: "62bb62ba-852c-4661-88a5-6e06248f22bf"})
@@ -87,8 +88,6 @@ const Dashboard = ({signOut}) => {
     const [isFocused, setIsFocused] = useState(false)
     const [searchText, setSearchText] = useState("")
     const [hashtagList, setHashtagList] = useState([])
-    
-
     const [visibleTags, setVisibleTags] = useState(["genz"])
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
     
@@ -109,6 +108,8 @@ const Dashboard = ({signOut}) => {
         {label: '2 Weeks', value: 14},
         {label: '1 Week', value: 7},
     ]
+
+   
 
     const chartOptions = [
         {label: "Total", chartId: "62bb62ba-852c-4661-88a5-6e06248f22bf"},
@@ -168,6 +169,7 @@ const Dashboard = ({signOut}) => {
         setDateFilter(new Date(priordate.toISOString().substring(0,10).toString()))
     }
 
+  
 
    const changeChartValue = newValObj => {
         let res = chartOptions.filter(option => option.label === newValObj.label)
@@ -175,7 +177,9 @@ const Dashboard = ({signOut}) => {
     }   
 
 
-    return loading ? <div>LOADING DATA... </div> :
+
+    return loading ? <div>LOADING... </div> :
+
         <>
             <div style={{"height": "75px", "display": "flex", "justifyContent": "space-between", "flexDirection": "row", "width": "100%", "alignItems": "center", "backgroundColor": isFocused && searchText.length > 0 ? "rgba(217, 217, 217, 0.75)" : "rgba(217, 217, 217, 0.1)", "zIndex": "1"}}>
                 <div style={{"display": "flex", "flexDirection":"row", "alignItems": "center"}}>
@@ -218,8 +222,17 @@ const Dashboard = ({signOut}) => {
                          }
                     </div> : null}
                 </div>
+                <div style={{"display":"flex", "flexDirection":"row", "height": "100%", "alignItems":"center"}}>
+                    
+                    <div onClick={() => setCurrentPage("dashboard")} className="page-button" style={{"backgroundColor": currentPage !== "dashboard" ? "rgba(229, 229, 229, 1)" : "rgba(175, 175, 175, 1)", "fontSize":"18px", "height": "52px", "width": "128px", "margin": "10px", "borderRadius": "35px", "display":"flex", "alignItems":"center", "justifyContent":"center"}}>
+                        Dashboard
+                    </div>
+                    <div onClick={() => setCurrentPage("explore")} className="page-button" style={{"backgroundColor": currentPage !== "explore" ? "rgba(229, 229, 229, 1)" : "rgba(175, 175, 175, 1)", "marginRight": "50px", "fontSize":"18px", "height": "52px", "width": "128px", "margin": "10px", "borderRadius": "35px", "display":"flex", "alignItems":"center", "justifyContent":"center"}}>
+                        Explore
+                    </div>
+                    <Button variation="primary" style={{"fontSize":"18px", "marginRight": "10px", "fontWeight":"normal", "minWidth": "150px", "height": "52px"}} onClick={signOut}>Sign out</Button>
+                </div>
                 
-                <Button variation="primary" style={{"marginRight": "10px", "fontWeight":"normal", "minWidth": "150px"}} onClick={signOut}>Sign out</Button>
             </div>
             <div style={{
                 "display": "flex", 
@@ -233,107 +246,89 @@ const Dashboard = ({signOut}) => {
         {/* <Header signOut={signOut} isSearchFocused={false} /> */}
 
         
-        
-        <div className="row" style={{"display": "flex", "paddingTop": "30px", "flexDirection": "row", "height": "100%", "width": "100%", "justifyContent": "space-around", "flexWrap": "wrap-reverse", "alignItems": "center"}}>
-            <div className='leftColumn' style={{ "flexBasis": "25%"}}>
-                <div style={{"display": "flex", "justifyContent": "space-around", "flexDirection": "row", "width":"100%"}}>
-                    <div style={{"display": "flex", "flexDirection": "column", "alignItems": "center", "justifyContent": "center", "textAlign": "center"}}>
-                        {
-                            dateOptions.map((option) => 
-                                <div onClick={() => changeSelectValue(option)}key={option.label} className="option-item" style={{"backgroundColor": option.label === selectValue.label ? "rgba(175, 175, 175, 1)" : "rgba(229, 229, 229, 1)"}}>
-                                    <div style={{"display":"flex", "flexDirection":"column", "justifyContent":"space-between"}}>
-                                        <p style={{"marginRight": "10px", "display": "flex", "overflowWrap": "false"}}>
-                                            {option.label}
-                                        </p>
-                                    </div>
-                                </div>
-                            )
-                        }
-                    </div>
-                    {/* <div style={{"display": "flex", "flexDirection": "row", "alignItems": "center", "justifyContent": "center", "textAlign": "center"}} >
-                        <Dropdown
-                            options={dateOptions}
-                            onChange={value => changeSelectValue(value)}
-                            value={selectValue.label}
-                            placeholder="All Time"
-                            className='dropdown'
-                        />
-                    </div> */}
-                    <div style={{"display": "flex", "flexDirection": "column", "alignItems": "center", "justifyContent": "center", "textAlign": "center"}}>
-                        {
-                            chartOptions.map((option) => 
-                                <div onClick={() => changeChartValue(option)} key={option.label} className="option-item" style={{"backgroundColor": option.label === curChart.label ? "rgba(175, 175, 175   , 1)" : "rgba(229, 229, 229, 1)"}}>
-                                    <div style={{"display":"flex", "flexDirection":"column", "justifyContent":"space-between"}}>
-                                        <p style={{"marginRight": "10px", "display": "flex", "overflowWrap": "false"}} >
-                                            {option.label}
-                                        </p>
-                                    </div>
-                                </div>
-                            )
-                        }
-                    </div>
-                    {/* <div style={{"display": "flex", "flexDirection": "row", "alignItems": "center", "justifyContent": "center"}} >
-                        <Dropdown
-                            options={chartOptions}
-                            onChange={value => changeChartValue(value)}
-                            value={curChart.label}
-                            placeholder="Total"
-                            className='dropdown'
-                        />
-                    </div> */}
-                </div>
-            </div>
-            
-            <div className='rightColumn' style={{"flexBasis": "65%", "display": "flex", "flexDirection": "column", "justifyContent": "flex-end", "alignItems": "flex-end", "paddingRight": "5%"}}>
-                <div style={{"display": "flex", "flexDirection": "column", "width": "100%", "height": "100%"}}>
-                    <div className="menu-container">
-                    {
-                            visibleTags.map((tag) => 
-                                <div key={tag} className="menu-item" style={{"height": "100%", "flexBasis": "25px", "margin": "10px", "padding": "0 15px", "borderRadius": "20px", "backgroundColor": "rgba(229, 229, 229, 1)"}}>
-                                    <div style={{"display":"flex", "flexDirection":"row", "justifyContent":"space-between", "alignItems":"center"}}>
-                                        <p style={{"marginRight": "10px", "fontStyle": "italic", "display": "flex", "overflowWrap": "false"}}>#{tag}</p>
-                                        {
-                                            visibleTags.length > 1 
-                                            ? 
-                                            <FontAwesomeIcon icon={faXmark} className="X"  onClick={e => unhideTag(e, tag)}/>
-                                            : <FontAwesomeIcon style={{"visibility":"hidden"}} icon={faXmark} className="X"  onClick={e => unhideTag(e, tag)}/>
-
-                                        }
-                                    </div>
-                                </div>
-                            )
-                        }
-                        
-                        
-                    </div>
-                    <div className="charts" style={{"width":"100%"}}>
-
-                        {/* <MultiLineChart 
-                            data={visibleTags}
-                            width={500}
-                            height={400}
-                        /> */}
-                        {loading ? <p> Loading... </p>:
-                        <Chart filter={visibleTags.length > 0 ? {$or: visibleTags.map((tag) => (
+        { currentPage === "dashboard" ?
+            <div className="row" style={{"display": "flex", "paddingTop": "30px", "flexDirection": "row", "height": "100%", "width": "100%", "justifyContent": "space-around", "flexWrap": "wrap-reverse", "alignItems": "center"}}>
+                <div className='leftColumn' style={{ "flexBasis": "25%"}}>
+                    <div style={{"display": "flex", "justifyContent": "space-around", "flexDirection": "row", "width":"100%"}}>
+                        <div style={{"display": "flex", "flexDirection": "column", "alignItems": "center", "justifyContent": "center", "textAlign": "center"}}>
                             {
-                                "hashtag": tag,
-                                "date": {$gte: dateFilter}
-                            }))
-                        } : {
-                            "date": {$gte: dateFilter} 
-                        }} chartId={curChart.chartId}/>
-                        }
-                    
+                                dateOptions.map((option) => 
+                                    <div onClick={() => changeSelectValue(option)}key={option.label} className="option-item" style={{"backgroundColor": option.label === selectValue.label ? "rgba(175, 175, 175, 1)" : "rgba(229, 229, 229, 1)"}}>
+                                        <div style={{"display":"flex", "flexDirection":"column", "justifyContent":"space-between"}}>
+                                            <p style={{"marginRight": "10px", "display": "flex", "overflowWrap": "false"}}>
+                                                {option.label}
+                                            </p>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        </div>
+
+                        <div style={{"display": "flex", "flexDirection": "column", "alignItems": "center", "justifyContent": "center", "textAlign": "center"}}>
+                            {
+                                chartOptions.map((option) => 
+                                    <div onClick={() => changeChartValue(option)} key={option.label} className="option-item" style={{"backgroundColor": option.label === curChart.label ? "rgba(175, 175, 175   , 1)" : "rgba(229, 229, 229, 1)"}}>
+                                        <div style={{"display":"flex", "flexDirection":"column", "justifyContent":"space-between"}}>
+                                            <p style={{"marginRight": "10px", "display": "flex", "overflowWrap": "false"}} >
+                                                {option.label}
+                                            </p>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        </div>
+                        
                     </div>
                 </div>
-                <ExportButton currentTags={visibleTags}/>
+                
+                <div className='rightColumn' style={{"flexBasis": "65%", "display": "flex", "flexDirection": "column", "justifyContent": "flex-end", "alignItems": "flex-end", "paddingRight": "5%"}}>
+                    <div style={{"display": "flex", "flexDirection": "column", "width": "100%", "height": "100%"}}>
+                        <div className="menu-container">
+                        {
+                                visibleTags.map((tag) => 
+                                    <div key={tag} className="menu-item" style={{"height": "100%", "flexBasis": "25px", "margin": "10px", "padding": "0 15px", "borderRadius": "20px", "backgroundColor": "rgba(229, 229, 229, 1)"}}>
+                                        <div style={{"display":"flex", "flexDirection":"row", "justifyContent":"space-between", "alignItems":"center"}}>
+                                            <p style={{"marginRight": "10px", "fontStyle": "italic", "display": "flex", "overflowWrap": "false"}}>#{tag}</p>
+                                            {
+                                                visibleTags.length > 1 
+                                                ? 
+                                                <FontAwesomeIcon icon={faXmark} className="X"  onClick={e => unhideTag(e, tag)}/>
+                                                : <FontAwesomeIcon style={{"visibility":"hidden"}} icon={faXmark} className="X"  onClick={e => unhideTag(e, tag)}/>
+
+                                            }
+                                        </div>
+                                    </div>
+                                )
+                            }
+                            
+                            
+                        </div>
+                        <div className="charts" style={{"width":"100%"}}>
+
+                            {/* <MultiLineChart 
+                                data={visibleTags}
+                                width={500}
+                                height={400}
+                            /> */}
+                            {loading ? <p> Loading... </p>:
+                            <Chart filter={visibleTags.length > 0 ? {$or: visibleTags.map((tag) => (
+                                {
+                                    "hashtag": tag,
+                                    "date": {$gte: dateFilter}
+                                }))
+                            } : {
+                                "date": {$gte: dateFilter} 
+                            }} chartId={curChart.chartId}/>
+                            }
+                        
+                        </div>
+                    </div>
+                    <ExportButton currentTags={visibleTags}/>
+                </div>
             </div>
-        </div>
-        
-        <div className="row" style={{"display": "flex", "paddingTop": "30px", "flexDirection": "row", "height": "100%", "width": "100%", "justifyContent": "space-around", "flexWrap": "wrap-reverse", "alignItems": "center"}}>
-                <Trending  style={{"paddingTop": "20px"}} unhideTag={unhideTag} />
-        </div>
-    
+        : currentPage === "explore" ?
+           <Explore />
+        : null}
     </div>
         </>
         
