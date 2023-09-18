@@ -24,9 +24,9 @@ export const Explore = () => {
 
     return(
         <div className="row" style={{"display": "flex", "flexDirection": "row", "height": "100%", "width": "100%", "justifyContent": "space-around", "flexWrap": "wrap", "alignItems": "center"}}>
-            <div style={{"display": "flex", "flexDirection": "row", "height": "100%", "width": "100%", "justifyContent": "space-around", "flexWrap": "wrap", "alignItems": "center"}}>
-                <h1 style={{"fontStyle": "italic", "fontWeight": "bold"}}>Discover What's Trending</h1>
-                <div style={{"display": "flex", "paddingTop": "50px", "flexDirection": "row", "alignItems": "center", "justifyContent": "center", "textAlign": "center"}}>
+            <div style={{"display": "flex", "flexDirection": "row", "height": "100%", "width": "100%", "justifyContent": "space-around", "flexWrap": "wrap", "alignItems": "center", "paddingTop":"40px"}}>
+                <h1 style={{"fontStyle": "italic", "fontWeight": "bold"}}>Discover Trends With Momentum</h1>
+                <div style={{"display": "flex", "flexDirection": "row", "alignItems": "center", "justifyContent": "center", "textAlign": "center"}}>
                     {
                         trendingOptions.map((option) => 
                             <div onClick={() => changeTrendingValue(option)}key={option.label} className="option-item" style={{"backgroundColor": option.label === trendingValue.label ? "rgba(175, 175, 175, 1)" : "rgba(229, 229, 229, 1)"}}>
