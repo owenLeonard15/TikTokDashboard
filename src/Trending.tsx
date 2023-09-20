@@ -13,8 +13,7 @@ export const Trending = ({ selectedTag }) => {
     var tzoffset = (new Date()).getTimezoneOffset() *  60000; //offset in milliseconds
     var localISOTime = (new Date(Date.now() - tzoffset)).toISOString(); 
     
-    // const today = localISOTime.substring(0,10).toString()
-    const today = "2023-09-14"
+    const today = localISOTime.substring(0,10).toString()
 
     const one_day_data = useQuery(
         GET_PCT_CHANGES_ONE_DAY, {

@@ -190,7 +190,7 @@ const Dashboard = ({signOut}) => {
                     </Button> 
 
                     : null} */}
-                {visibleTags.length < 16 ? <div style={{"display": "flex", "width": "100%", "justifyContent": "center"}} className="menu-item">
+                {visibleTags.length < 16 && currentPage === "dashboard" ? <div style={{"display": "flex", "width": "100%", "justifyContent": "center"}} className="menu-item">
                     <TagSearchBar 
                         style={{"width": "100%"}}
                         visibleTags={visibleTags} 
