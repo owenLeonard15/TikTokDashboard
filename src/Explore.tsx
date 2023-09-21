@@ -17,7 +17,6 @@ export const Explore = () => {
     ]
 
     const changeTrendingValue = newVal => {
-        console.log(newVal)
         setTrendingValue(newVal)
     }
 

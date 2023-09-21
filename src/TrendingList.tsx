@@ -19,7 +19,6 @@ export interface TrendingListProps {
   }
 
 export const TrendingList = ({data, time_frame, time_frame_key}: TrendingListProps) => {    
-  console.log(time_frame)  
   return (
       data.loading ? <div>Loading...</div> :
         <div className="trending-list" style={{"display": "flex", "flexWrap": "wrap", "justifyContent": "space-evenly", "width": "100%"}}>
