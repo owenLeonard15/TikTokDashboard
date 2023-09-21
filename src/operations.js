@@ -123,3 +123,45 @@ query GetMetricPercentChanges($today: String!){
   }
 `
 
+export const GET_PCT_CHANGES_THREE_MONTHS = gql`
+query GetMetricPercentChanges($today: String!){
+    metric_pct_changes(
+        query: {date: $today },
+        limit:100,
+        sortBy: THREE_MONTHS_DESC
+        ) {
+        _id
+        hashtag
+        three_months
+    }
+}
+`
+
+export const GET_PCT_CHANGES_SIX_MONTHS = gql`
+query GetMetricPercentChanges($today: String!){
+    metric_pct_changes(
+        query: {date: $today },
+        limit:100,
+        sortBy: SIX_MONTHS_DESC
+        ) {
+        _id
+        hashtag
+        six_months
+    }
+}
+`
+
+export const GET_PCT_CHANGES_ONE_YEAR = gql`
+query GetMetricPercentChanges($today: String!){
+    metric_pct_changes(
+        query: {date: $today },
+        limit:100,
+        sortBy: ONE_YEAR_DESC
+        ) {
+        _id
+        hashtag
+        one_year
+    }
+}
+`
+

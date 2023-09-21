@@ -1,6 +1,14 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_PCT_CHANGES_ONE_DAY, GET_PCT_CHANGES_ONE_WEEK, GET_PCT_CHANGES_TWO_WEEKS, GET_PCT_CHANGES_ONE_MONTH } from './operations';
+import { 
+    GET_PCT_CHANGES_ONE_DAY, 
+    GET_PCT_CHANGES_ONE_WEEK,
+    GET_PCT_CHANGES_TWO_WEEKS, 
+    GET_PCT_CHANGES_ONE_MONTH,
+    GET_PCT_CHANGES_THREE_MONTHS,
+    GET_PCT_CHANGES_SIX_MONTHS,
+    GET_PCT_CHANGES_ONE_YEAR
+ } from './operations';
 import './Trending.css';
 import { useState } from 'react';
 // import {TrendingRow} from './TrendingRow.tsx';
@@ -36,6 +44,23 @@ export const Trending = ({ selectedTag }) => {
             variables: { today }
         }
     );
+    const three_months_data = useQuery(
+        GET_PCT_CHANGES_THREE_MONTHS, {
+            variables: { today }
+        }
+    );
+    const six_months_data = useQuery(
+        GET_PCT_CHANGES_SIX_MONTHS, {
+            variables: { today }
+        }
+    );
+    const one_year_data = useQuery(
+        GET_PCT_CHANGES_ONE_YEAR, {
+            variables: { today }
+        }
+    );
+
+    console.log(three_months_data)
 
 
     return <div style={{width: "100%"}}>
@@ -43,5 +68,8 @@ export const Trending = ({ selectedTag }) => {
             { selectedTag === "one_week" ?<TrendingList data={one_week_data}  time_frame={"one week"} time_frame_key={"one_week"} /> : null }
             { selectedTag === "two_weeks" ?<TrendingList data={two_weeks_data}  time_frame={"two weeks"} time_frame_key={"two_weeks"} /> : null } 
             { selectedTag === "one_month" ?<TrendingList data={one_month_data}  time_frame={"one month"} time_frame_key={"one_month"} /> : null } 
+            { selectedTag === "three_months" ?<TrendingList data={three_months_data}  time_frame={"three months"} time_frame_key={"three_months"} /> : null }
+            { selectedTag === "six_months" ?<TrendingList data={six_months_data}  time_frame={"six months"} time_frame_key={"six_months"} /> : null }
+            { selectedTag === "one_year" ?<TrendingList data={one_year_data}  time_frame={"one year"} time_frame_key={"one_year"} /> : null }
         </div>
 }
