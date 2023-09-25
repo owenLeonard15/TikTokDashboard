@@ -27,7 +27,7 @@ interface TrendObject {
   views: number;
 }
 
-const [trendObjects, setTrendObjects] = useState<TrendObject[]>([]);
+const [trendObjects, setTrendObjects] = useState<null | TrendObject[]>(null);
 const [currentTags, setCurrentTags] = useState<string[]>([]);
 
 useEffect(() => {
@@ -54,6 +54,7 @@ const view_counts = useQuery(
 // when view_counts is loaded, set the trendObjects state variable to the metric_pct_changes objects with an additional key of views for the current day
 // basically a join of the metric_pct_changes and views objects
 useEffect(() => {
+  setTrendObjects([])
   if(!view_counts.loading && view_counts.data.metrics.length > 0){
       setTrendObjects(data.data.metric_pct_changes.map((metric_obj) => {
         let matching_view_obj = view_counts.data.metrics.find((metric_view_obj) => metric_view_obj.hashtag === metric_obj.hashtag);
@@ -66,13 +67,10 @@ useEffect(() => {
   }
 }, [view_counts])
 
-useEffect(() => { 
-  console.log("Trend objects: ", trendObjects)
-}, [trendObjects])
 
     return (
         data.loading || trendObjects === null ? <div>Loading...</div> :
-          trendObjects.length === 0 ? <div style={{paddingTop: "50px"}}>No trending hashtags available for this period due 
+        !data.loading && trendObjects.length === 0 ? <div style={{paddingTop: "50px"}}>No trending hashtags available for this period due 
             to missing total view count data {time_frame} ago </div> :
           <div className="trending-list" style={{"display": "flex", "flexWrap": "wrap", "justifyContent": "space-evenly", "width": "100%"}}>
               { 
