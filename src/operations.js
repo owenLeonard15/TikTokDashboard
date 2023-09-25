@@ -165,3 +165,15 @@ query GetMetricPercentChanges($today: String!){
 }
 `
 
+export const GET_VIEWS = gql`
+query GetViews($today: String!, $currentTags: [String]!){
+    metrics(
+        query: {date: $today, hashtag_in: $currentTags}
+        ) {
+        _id
+        hashtag
+        views
+        }
+    }
+`
+

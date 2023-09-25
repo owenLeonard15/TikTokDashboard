@@ -60,9 +60,6 @@ export const Trending = ({ selectedTag }) => {
         }
     );
 
-    console.log(three_months_data)
-
-
     return <div style={{width: "100%"}}>
             { selectedTag === "one_day" ? <TrendingList data={one_day_data}  time_frame={"one day"} time_frame_key={"one_day"} /> : null }
             { selectedTag === "one_week" ?<TrendingList data={one_week_data}  time_frame={"one week"} time_frame_key={"one_week"} /> : null }

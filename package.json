@@ -33,9 +33,11 @@
     "react-select-search": "^4.1.6",
     "realm-web": "^1.7.1",
     "sass": "^1.57.1",
+    "source-map-explorer": "^2.5.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
