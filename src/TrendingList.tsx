@@ -72,6 +72,8 @@ useEffect(() => {
 
     return (
         data.loading || trendObjects === null ? <div>Loading...</div> :
+          trendObjects.length === 0 ? <div>No trending hashtags available for this period due 
+            to missing total view count data {time_frame} ago </div> :
           <div className="trending-list" style={{"display": "flex", "flexWrap": "wrap", "justifyContent": "space-evenly", "width": "100%"}}>
               { 
               trendObjects.map((metric_obj, index) =>

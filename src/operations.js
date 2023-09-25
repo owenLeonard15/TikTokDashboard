@@ -70,7 +70,7 @@ export const GET_METRICS_FROM_LIST = gql`
 export const GET_PCT_CHANGES_ONE_DAY = gql`
 query GetMetricPercentChanges($today: String!){
     metric_pct_changes(
-        query: {date: $today }, 
+        query: {date: $today, one_day_gt: 0}, 
         limit:100, 
         sortBy: ONE_DAY_DESC
         ) {
@@ -84,7 +84,7 @@ query GetMetricPercentChanges($today: String!){
 export const GET_PCT_CHANGES_ONE_WEEK = gql`
 query GetMetricPercentChanges($today: String!){
     metric_pct_changes(
-        query: {date: $today }, 
+        query: {date: $today, one_week_gt: 0 }, 
         limit:100, 
         sortBy: ONE_WEEK_DESC
         ) {
@@ -98,7 +98,7 @@ query GetMetricPercentChanges($today: String!){
 export const GET_PCT_CHANGES_TWO_WEEKS = gql`
 query GetMetricPercentChanges($today: String!){
     metric_pct_changes(
-        query: {date: $today }, 
+        query: {date: $today, two_weeks_gt: 0 }, 
         limit:100, 
         sortBy: TWO_WEEKS_DESC
         ) {
@@ -112,7 +112,7 @@ query GetMetricPercentChanges($today: String!){
 export const GET_PCT_CHANGES_ONE_MONTH= gql`
 query GetMetricPercentChanges($today: String!){
     metric_pct_changes(
-        query: {date: $today }, 
+        query: {date: $today, one_month_gt: 0 }, 
         limit:100, 
         sortBy: ONE_MONTH_DESC
         ) {
@@ -126,7 +126,7 @@ query GetMetricPercentChanges($today: String!){
 export const GET_PCT_CHANGES_THREE_MONTHS = gql`
 query GetMetricPercentChanges($today: String!){
     metric_pct_changes(
-        query: {date: $today },
+        query: {date: $today, three_months_gt: 0 },
         limit:100,
         sortBy: THREE_MONTHS_DESC
         ) {
@@ -140,7 +140,7 @@ query GetMetricPercentChanges($today: String!){
 export const GET_PCT_CHANGES_SIX_MONTHS = gql`
 query GetMetricPercentChanges($today: String!){
     metric_pct_changes(
-        query: {date: $today },
+        query: {date: $today, six_months_gt: 0},
         limit:100,
         sortBy: SIX_MONTHS_DESC
         ) {
@@ -154,7 +154,7 @@ query GetMetricPercentChanges($today: String!){
 export const GET_PCT_CHANGES_ONE_YEAR = gql`
 query GetMetricPercentChanges($today: String!){
     metric_pct_changes(
-        query: {date: $today },
+        query: {date: $today, one_year_gt: 0},
         limit:100,
         sortBy: ONE_YEAR_DESC
         ) {

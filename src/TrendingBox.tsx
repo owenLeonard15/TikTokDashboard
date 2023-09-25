@@ -37,7 +37,7 @@ export const TrendingBox = ({order_number, metric_obj, time_frame, time_frame_ke
     
     
     return (
-        metric_obj[time_frame_key] >= .00 ? 
+        metric_obj[time_frame_key] >= 0  ? 
         <div className="trending-box">
             <div className="trending-box-index" style={{width:  order_number === 99 ? "156px" : "106px"}}>
                 #{order_number+1}
